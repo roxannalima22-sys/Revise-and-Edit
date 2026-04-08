@@ -2770,6 +2770,7 @@ function scoreMC(q, chosen) {
     selId: item_sel_id()
   });
   updateProgress();
+  submitSingleResponse(q.id, q.typeLabel, chosen, correct ? 'Correct' : 'Incorrect', correct ? 1 : 0, item_sel_id());
   if (ttsEnabled) speak(correct ? 'Correct! Great work!' : 'Not quite. Let\'s look at the feedback.');
 }
 
@@ -2805,6 +2806,7 @@ function scoreTyped(q, response) {
     feedback: feedbackMsg, selId: item_sel_id()
   });
   updateProgress();
+  submitSingleResponse(q.id, q.typeLabel, response, score === 1 ? 'Correct' : score === 0.5 ? 'Partial' : 'Incorrect', score, item_sel_id());
   if (ttsEnabled) speak(score === 1 ? 'Excellent work!' : 'Let\'s review the feedback together.');
 }
 
@@ -3050,9 +3052,48 @@ function showResults() {
 }
 
 /* ============================================================
+   SECTION: REAL-TIME SINGLE QUESTION SUBMISSION
+   ============================================================ */
+async function submitSingleResponse(qId, qType, answer, correctIncorrect, score, selId) {
+  if (!SCRIPT_URL || SCRIPT_URL === "PASTE_GOOGLE_APPS_SCRIPT_URL_HERE") return;
+  if (!state.selectedStudent) return;
+
+  const total = state.responses.length;
+  const correct = state.responses.filter(r => r.correct || r.score >= 0.5).length;
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+  const row = {
+    timestamp: new Date().toISOString(),
+    teacher: "Mrs. Claudio",
+    class: state.selectedClass,
+    studentName: state.selectedStudent,
+    selectionId: selId,
+    questionId: qId,
+    questionType: qType,
+    studentResponse: answer.toString(),
+    correctIncorrect: correctIncorrect,
+    score: score,
+    feedbackGiven: '',
+    finalTotalScore: correct,
+    percent: pct
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rows: [row] })
+    });
+  } catch(e) {
+    // Silent fail — data is still saved locally
+  }
+}
+
+/* ============================================================
    SECTION: GOOGLE SHEETS SUBMISSION LOGIC
    ============================================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0h7ENhOkJwnYz5vfnZZ_pR0qTEQDQWK8voRbUdUBd8gCAohDcXT-7eHPjQx0Krmo/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxBakMul6MROV5kNisb8W3trYQjmJllwDzISR2nI8vcpp16_VFYFiI5P9LYJSEyqYI/exec";
 
 async function submitToTeacher() {
   const msgEl = document.getElementById('submission-msg');
