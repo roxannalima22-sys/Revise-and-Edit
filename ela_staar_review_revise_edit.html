@@ -2256,8 +2256,122 @@ const SELECTIONS = [
 ];
 
 /* ============================================================
-   SECTION: APP STATE
+   SECTION: AUTO-SAVE / RESUME SYSTEM
    ============================================================ */
+const SAVE_VERSION = "v1";
+
+function getSaveKey(studentName) {
+  return `staar_save_${SAVE_VERSION}_${(studentName||'guest').replace(/\s+/g,'_')}`;
+}
+
+function saveProgress() {
+  if (!state.selectedStudent) return;
+  const saveData = {
+    student: state.selectedStudent,
+    class: state.selectedClass,
+    currentFlat: state.currentFlat,
+    responses: state.responses,
+    answered: state.answered,
+    savedAt: new Date().toISOString()
+  };
+  try {
+    localStorage.setItem(getSaveKey(state.selectedStudent), JSON.stringify(saveData));
+  } catch(e) {}
+}
+
+function loadSavedProgress(studentName) {
+  try {
+    const raw = localStorage.getItem(getSaveKey(studentName));
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (data.student !== studentName) return null;
+    return data;
+  } catch(e) { return null; }
+}
+
+function clearSavedProgress(studentName) {
+  try {
+    localStorage.removeItem(getSaveKey(studentName));
+  } catch(e) {}
+}
+
+function checkForSavedSession(studentName) {
+  const saved = loadSavedProgress(studentName);
+  if (!saved || saved.responses.length === 0) return;
+
+  const qDone = saved.responses.length;
+  const savedAt = new Date(saved.savedAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+
+  // Show resume banner
+  showResumeBanner(studentName, qDone, savedAt, saved);
+}
+
+function showResumeBanner(studentName, qDone, savedAt, saved) {
+  // Remove any existing banner
+  const existing = document.getElementById('resume-banner');
+  if (existing) existing.remove();
+
+  const banner = document.createElement('div');
+  banner.id = 'resume-banner';
+  banner.style.cssText = `
+    background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    animation: slideIn 0.3s ease;
+  `;
+  banner.innerHTML = `
+    <div>
+      <div style="font-weight:700;font-size:0.95rem;margin-bottom:3px;">👋 Welcome back, ${studentName.split(' ')[0]}!</div>
+      <div style="font-size:0.80rem;opacity:0.85;">You completed ${qDone} of 16 questions. Last saved at ${savedAt}.</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button onclick="resumeSession()" style="background:#fff;color:#1d4ed8;border:none;padding:8px 18px;border-radius:7px;font-weight:700;font-size:0.82rem;cursor:pointer;font-family:var(--font-ui);">▶ Resume Where I Left Off</button>
+      <button onclick="startFresh()" style="background:rgba(255,255,255,0.18);color:#fff;border:1px solid rgba(255,255,255,0.35);padding:8px 14px;border-radius:7px;font-weight:600;font-size:0.82rem;cursor:pointer;font-family:var(--font-ui);">↺ Start Over</button>
+    </div>
+  `;
+
+  // Store saved data for resume
+  banner._savedData = saved;
+  window._pendingSavedData = saved;
+
+  const startScreen = document.getElementById('start-screen');
+  startScreen.prepend(banner);
+}
+
+function resumeSession() {
+  const saved = window._pendingSavedData;
+  if (!saved) return;
+
+  buildFlatQuestions();
+  state.started = true;
+  state.currentFlat = saved.currentFlat;
+  state.responses = saved.responses;
+
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('question-area').classList.remove('hidden');
+  buildSelectionTabs();
+  renderCurrentQuestion();
+  updateProgress();
+
+  const banner = document.getElementById('resume-banner');
+  if (banner) banner.remove();
+  window._pendingSavedData = null;
+}
+
+function startFresh() {
+  clearSavedProgress(state.selectedStudent);
+  window._pendingSavedData = null;
+  const banner = document.getElementById('resume-banner');
+  if (banner) banner.remove();
+}
 let state = {
   started: false,
   currentSelIdx: 0,
@@ -2306,7 +2420,11 @@ document.getElementById('class-select').addEventListener('change', function() {
 
 document.getElementById('student-select').addEventListener('change', function() {
   state.selectedStudent = this.value;
-  if (state.selectedStudent) applyAccommodations(state.selectedStudent);
+  state.selectedClass = document.getElementById('class-select').value;
+  if (state.selectedStudent) {
+    applyAccommodations(state.selectedStudent);
+    checkForSavedSession(state.selectedStudent);
+  }
 });
 
 /* ============================================================
@@ -2480,7 +2598,7 @@ function renderAnswerArea(q) {
     ta.maxLength = 500;
     ta.oninput = function() {
       document.getElementById('char-counter').textContent = `${this.value.length}/500 characters`;
-      if (sttEnabled && sttRecognition) { /* already handled */ }
+      saveProgress();
     };
     area.appendChild(ta);
     const counter = document.createElement('div');
@@ -2610,6 +2728,7 @@ function submitAnswer() {
 
   state.answered = true;
   document.getElementById('submit-btn').disabled = true;
+  saveProgress();
   showThinkTime(q);
   setTimeout(() => {
     document.getElementById('next-btn').classList.add('show');
@@ -2736,6 +2855,7 @@ function showThinkTime(q) {
 function nextQuestion() {
   state.currentFlat++;
   selectedMCLetter = null;
+  saveProgress();
   renderCurrentQuestion();
 }
 
@@ -2976,6 +3096,7 @@ async function submitToTeacher() {
     // no-cors means we can't read the response, but if no exception was thrown the request went through
     msgEl.className = 'submission-msg show submission-success';
     msgEl.textContent = '✅ Submitted! Check your Google Sheet in about 10 seconds to confirm the data arrived.';
+    clearSavedProgress(state.selectedStudent);
   } catch(e) {
     msgEl.className = 'submission-msg show submission-error';
     msgEl.textContent = '❌ Submission failed. Please let your teacher know so they can help.';

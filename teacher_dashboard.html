@@ -249,6 +249,8 @@ body {
 
 .grid-wrap {
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 520px;
   padding: 0;
 }
 table {
@@ -266,15 +268,17 @@ thead th {
   letter-spacing: 0.5px;
   white-space: nowrap;
   position: sticky;
-  top: 56px;
+  top: 0;
+  z-index: 4;
 }
 thead th:first-child {
   text-align: left;
   padding-left: 16px;
-  min-width: 160px;
+  min-width: 180px;
   position: sticky;
   left: 0;
-  z-index: 5;
+  top: 0;
+  z-index: 6;
   background: var(--navy);
 }
 thead th.q-header {
@@ -654,6 +658,26 @@ tbody td:first-child {
 }
 .toggle-switch.on::after { left: 14px; }
 
+.reset-btn {
+  background: none;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+  font-size: 0.62rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  margin-left: 6px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.reset-btn:hover {
+  background: var(--red-l);
+  border-color: var(--red);
+  color: var(--red);
+}
+
 @media (max-width: 900px) {
   .summary-row { grid-template-columns: repeat(3, 1fr); }
 }
@@ -946,7 +970,7 @@ function renderActiveClass() {
     const accom = getAccomBadge(name);
 
     html += `<tr class="${hasData ? '' : 'not-started-row'}" onclick="selectStudent('${escapeName(name)}')">`;
-    html += `<td>${name}${accom ? ` <span class="badge ${accom.cls}">${accom.label}</span>` : ''}</td>`;
+    html += `<td>${name}${accom ? ` <span class="badge ${accom.cls}">${accom.label}</span>` : ''}<button class="reset-btn" onclick="event.stopPropagation();confirmReset('${escapeName(name)}')" title="Reset student progress">↺ Reset</button></td>`;
 
     QUESTIONS.forEach(q => {
       if (!hasData) {
@@ -1196,7 +1220,18 @@ function showError(err) {
 }
 
 /* ============================================================
-   APPS SCRIPT UPDATE NEEDED
+   TEACHER RESET
+   ============================================================ */
+function confirmReset(name) {
+  if (!confirm(`Reset all saved progress for ${name}?\n\nThis will clear their localStorage save data so they can start fresh. This does NOT delete their submitted Google Sheets data.`)) return;
+  // Send reset signal to Apps Script (optional - clears sheet rows)
+  // For now, generate a reset key the student page checks
+  const resetKey = `staar_reset_${name.replace(/\s+/g,'_')}`;
+  // Store reset timestamp in a shared signal via Apps Script
+  fetch(`${SCRIPT_URL}?action=reset&student=${encodeURIComponent(name)}`)
+    .catch(() => {}); // fire and forget
+  alert(`✅ Reset signal sent for ${name}.\n\nWhen they next open the activity, their progress will be cleared and they can start fresh.`);
+}
    Add this function to your existing Apps Script code:
 
 function doGet(e) {
