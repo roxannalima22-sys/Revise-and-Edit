@@ -1,0 +1,3053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5th Grade ELA STAAR Revising & Editing Review — Mrs. Claudio</title>
+<style>
+/* ============================================================
+   GLOBAL STYLES
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #2563eb;
+  --blue-light: #dbeafe;
+  --blue-mid: #93c5fd;
+  --yellow: #f59e0b;
+  --yellow-light: #fef3c7;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --coral: #ef4444;
+  --coral-light: #fee2e2;
+  --orange: #ea580c;
+  --orange-light: #ffedd5;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --white: #ffffff;
+  --font-main: Georgia, 'Times New Roman', serif;
+  --font-ui: 'Trebuchet MS', Tahoma, Arial, sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.10);
+  --shadow-lg: 0 4px 20px rgba(0,0,0,0.13);
+}
+
+body {
+  font-family: var(--font-ui);
+  background: #eef2f7;
+  color: var(--gray-800);
+  font-size: 15px;
+  min-height: 100vh;
+}
+
+h1,h2,h3,h4 { font-family: var(--font-ui); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+#app-wrapper {
+  display: grid;
+  grid-template-columns: 240px 1fr 230px;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  gap: 0;
+}
+
+#top-bar {
+  grid-column: 1/-1;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 60%, #1e40af 100%);
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+#top-bar h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+#top-bar .tagline {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+}
+
+/* ============================================================
+   LEFT SIDEBAR
+   ============================================================ */
+#left-sidebar {
+  background: linear-gradient(180deg, #1e40af 0%, #1d4ed8 40%, #2563eb 100%);
+  color: #fff;
+  padding: 16px 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.sidebar-card {
+  background: rgba(255,255,255,0.13);
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.sidebar-card h3 {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  opacity: 0.75;
+  margin-bottom: 7px;
+}
+
+.sidebar-label {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  margin-bottom: 3px;
+  display: block;
+}
+
+select, input[type=text] {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-300);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  background: #fff;
+  color: var(--gray-800);
+  margin-bottom: 6px;
+}
+
+#left-sidebar select, #left-sidebar input {
+  background: rgba(255,255,255,0.95);
+  color: #1e293b;
+}
+
+/* Progress bar */
+.progress-bar-wrap {
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  height: 12px;
+  overflow: hidden;
+  margin: 6px 0;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  border-radius: 20px;
+  transition: width 0.5s;
+  width: 0%;
+}
+
+.progress-text {
+  font-size: 0.75rem;
+  text-align: center;
+  opacity: 0.85;
+  margin-top: 3px;
+}
+
+/* Accommodation badge */
+.accom-badge {
+  display: none;
+  background: #fbbf24;
+  color: #7c2d12;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* Sidebar buttons */
+.sidebar-btn {
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 0.80rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.sidebar-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.sidebar-btn:active { transform: translateY(0); }
+
+.btn-tts { background: #34d399; color: #065f46; }
+.btn-stt { background: #f472b6; color: #831843; }
+.btn-dict { background: #fbbf24; color: #78350f; }
+.btn-guide { background: #a78bfa; color: #2e1065; }
+.btn-supports { background: rgba(255,255,255,0.22); color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+
+.strategy-list {
+  list-style: none;
+  font-size: 0.75rem;
+  opacity: 0.92;
+  line-height: 1.65;
+}
+.strategy-list li::before { content: "→ "; }
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+#main-content {
+  background: var(--gray-50);
+  padding: 18px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+/* Selection/passage navigation */
+.selection-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sel-tab {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 2px solid var(--blue);
+  background: #fff;
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sel-tab.active, .sel-tab:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* Passage card */
+.passage-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--blue);
+}
+
+.passage-title {
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+.passage-type-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.badge-informational { background: var(--blue-light); color: #1e40af; }
+.badge-fiction { background: var(--purple-light); color: var(--purple); }
+.badge-narrative { background: var(--green-light); color: #15803d; }
+.badge-expository { background: var(--orange-light); color: var(--orange); }
+
+.passage-text {
+  font-family: var(--font-main);
+  font-size: 0.93rem;
+  line-height: 1.75;
+  color: var(--gray-700);
+  user-select: text;
+}
+
+.passage-text .sentence {
+  cursor: pointer;
+}
+
+/* Sentence number */
+.sent-num {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0 4px;
+  border-radius: 4px;
+  margin-right: 3px;
+  font-family: var(--font-ui);
+  vertical-align: middle;
+}
+
+/* Color coding */
+.hl-yellow { background: #fef08a !important; border-radius: 2px; }
+.hl-blue   { background: #bfdbfe !important; border-radius: 2px; }
+.hl-green  { background: #bbf7d0 !important; border-radius: 2px; }
+.hl-pink   { background: #fbcfe8 !important; border-radius: 2px; }
+.hl-orange { background: #fed7aa !important; border-radius: 2px; }
+
+/* Color toolbar */
+.color-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+}
+.color-toolbar span {
+  font-size: 0.72rem;
+  color: var(--gray-600);
+  font-weight: 600;
+  margin-right: 4px;
+}
+.color-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+  position: relative;
+}
+.color-btn:hover, .color-btn.selected { transform: scale(1.2); border-color: #333; }
+.color-btn[data-color="yellow"] { background: #fef08a; }
+.color-btn[data-color="blue"]   { background: #bfdbfe; }
+.color-btn[data-color="green"]  { background: #bbf7d0; }
+.color-btn[data-color="pink"]   { background: #fbcfe8; }
+.color-btn[data-color="orange"] { background: #fed7aa; }
+.clear-hl-btn {
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-300);
+  background: #fff;
+  cursor: pointer;
+  color: var(--gray-600);
+  font-weight: 600;
+}
+.clear-hl-btn:hover { background: var(--gray-100); }
+
+/* Question card */
+.question-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--yellow);
+}
+
+.question-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.q-number-badge {
+  background: var(--yellow);
+  color: #78350f;
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 3px 11px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.q-type-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.qt-revise   { background: #dbeafe; color: #1d4ed8; }
+.qt-edit     { background: #dcfce7; color: #15803d; }
+.qt-vocab    { background: #ede9fe; color: #6d28d9; }
+.qt-dict     { background: #ffedd5; color: #c2410c; }
+.qt-typed    { background: #fce7f3; color: #9d174d; }
+
+.question-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--gray-800);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* MC answer choices */
+.choices-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.choice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 13px;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  background: #fff;
+}
+.choice-item:hover { border-color: var(--blue-mid); background: var(--blue-light); }
+.choice-item.selected { border-color: var(--blue); background: var(--blue-light); }
+.choice-item.correct  { border-color: var(--green); background: var(--green-light); }
+.choice-item.incorrect { border-color: var(--coral); background: var(--coral-light); }
+.choice-item.show-correct { border-color: var(--green); background: var(--green-light); }
+
+.choice-letter {
+  font-weight: 800;
+  color: var(--blue);
+  min-width: 18px;
+  font-size: 0.88rem;
+}
+.choice-item.selected .choice-letter { color: var(--blue); }
+.choice-item.correct .choice-letter  { color: var(--green); }
+.choice-item.incorrect .choice-letter { color: var(--coral); }
+
+/* Typed response */
+.typed-area {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--gray-300);
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  resize: vertical;
+  line-height: 1.6;
+  transition: border-color 0.2s;
+}
+.typed-area:focus { outline: none; border-color: var(--blue); }
+
+.char-counter {
+  font-size: 0.72rem;
+  color: var(--gray-400);
+  text-align: right;
+  margin-top: 3px;
+}
+
+/* Submit button */
+.submit-btn {
+  padding: 10px 28px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-family: var(--font-ui);
+}
+.submit-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+.submit-btn:disabled { background: var(--gray-300); cursor: not-allowed; transform: none; }
+
+/* Feedback */
+.feedback-box {
+  display: none;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-top: 10px;
+  line-height: 1.6;
+  font-size: 0.88rem;
+}
+.feedback-box.show { display: block; }
+.feedback-correct { background: var(--green-light); border: 2px solid var(--green); }
+.feedback-incorrect { background: var(--coral-light); border: 2px solid var(--coral); }
+.feedback-partial { background: var(--yellow-light); border: 2px solid var(--yellow); }
+
+.feedback-icon { font-size: 1.1rem; margin-right: 5px; }
+.feedback-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+.feedback-explanation { margin-bottom: 8px; }
+.feedback-reteach {
+  background: rgba(255,255,255,0.7);
+  border-radius: 6px;
+  padding: 8px 11px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  border-left: 3px solid;
+}
+.feedback-correct .feedback-reteach { border-color: var(--green); }
+.feedback-incorrect .feedback-reteach { border-color: var(--coral); }
+
+/* Think time */
+.think-time-box {
+  display: none;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 2px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: #78350f;
+  font-weight: 600;
+}
+.think-time-box.show { display: block; }
+.think-time-box p { margin-bottom: 4px; }
+.think-time-box .think-prompt { font-style: italic; font-weight: 400; margin-top: 4px; }
+
+/* Next button */
+.next-btn {
+  padding: 11px 32px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, opacity 0.3s;
+  font-family: var(--font-ui);
+  display: none;
+}
+.next-btn.show { display: inline-block; }
+.next-btn:hover { background: #15803d; transform: translateY(-1px); }
+
+/* Guided mode steps */
+.guided-steps {
+  display: none;
+  background: var(--purple-light);
+  border: 2px solid #a78bfa;
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  font-size: 0.83rem;
+}
+.guided-steps.show { display: block; }
+.guided-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.guided-step-label {
+  background: var(--purple);
+  color: #fff;
+  font-size: 0.70rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  min-width: 50px;
+  text-align: center;
+}
+.guided-step-text { line-height: 1.55; color: var(--purple); font-weight: 500; }
+.guided-checklist { list-style: none; margin-top: 5px; }
+.guided-checklist li { margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.guided-checklist li::before { content: "☐"; font-size: 0.95rem; color: var(--purple); }
+
+.hint-btn {
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #a78bfa;
+  background: #fff;
+  color: var(--purple);
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.hint-btn:hover { background: var(--purple-light); }
+.hint-box {
+  display: none;
+  background: #fff;
+  border: 1px dashed var(--purple);
+  border-radius: 6px;
+  padding: 8px 11px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--purple);
+  line-height: 1.5;
+}
+.hint-box.show { display: block; }
+
+/* Sentence stems */
+.stems-box {
+  display: none;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  padding: 9px 13px;
+  margin-top: 8px;
+  font-size: 0.82rem;
+}
+.stems-box.show { display: block; }
+.stems-box h4 { color: var(--green); font-size: 0.78rem; margin-bottom: 5px; }
+.stems-box ul { padding-left: 16px; }
+.stems-box li { margin-bottom: 3px; color: var(--gray-700); }
+
+/* Read aloud button */
+.read-aloud-btn {
+  background: #34d399;
+  color: #065f46;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.read-aloud-btn:hover { background: #10b981; color: #fff; }
+
+/* Chunked passage */
+.chunk-nav {
+  display: none;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.chunk-nav.show { display: flex; }
+.chunk-btn {
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--blue);
+  background: #fff;
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chunk-btn:hover { background: var(--blue-light); }
+.chunk-label { font-size: 0.75rem; color: var(--gray-600); }
+
+/* ============================================================
+   RIGHT SIDEBAR
+   ============================================================ */
+#right-sidebar {
+  background: #fff;
+  border-left: 1px solid var(--gray-200);
+  padding: 14px 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.ref-card {
+  background: var(--gray-50);
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--gray-200);
+}
+.ref-card h3 {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid;
+}
+.ref-card.blue-card  h3 { color: var(--blue); border-color: var(--blue); }
+.ref-card.green-card h3 { color: var(--green); border-color: var(--green); }
+.ref-card.orange-card h3 { color: var(--orange); border-color: var(--orange); }
+.ref-card.purple-card h3 { color: var(--purple); border-color: var(--purple); }
+.ref-card.yellow-card h3 { color: #d97706; border-color: var(--yellow); }
+
+.ref-card ul { list-style: none; font-size: 0.78rem; line-height: 1.7; }
+.ref-card ul li { padding: 2px 0; display: flex; gap: 6px; align-items: flex-start; }
+.ref-card ul li::before { content: "•"; font-size: 1rem; flex-shrink: 0; }
+.ref-card.blue-card  ul li::before { color: var(--blue); }
+.ref-card.green-card ul li::before { color: var(--green); }
+.ref-card.orange-card ul li::before { color: var(--orange); }
+
+.color-legend { list-style: none; font-size: 0.78rem; }
+.color-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.legend-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.12);
+}
+
+/* SCR rubric */
+.rubric-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+  align-items: flex-start;
+}
+.rubric-score {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 2px 7px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.rubric-desc { font-size: 0.76rem; line-height: 1.45; color: var(--gray-700); }
+
+/* Editing marks */
+.edit-marks { font-size: 0.76rem; line-height: 1.75; }
+.edit-mark-row { display: flex; gap: 8px; align-items: baseline; }
+.edit-mark-symbol { font-family: var(--font-main); font-size: 1rem; font-weight: 700; min-width: 24px; color: var(--coral); }
+
+/* ============================================================
+   DICTIONARY MODAL
+   ============================================================ */
+#dict-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+#dict-modal.show { display: flex; }
+.dict-panel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 22px;
+  width: 400px;
+  max-width: 95vw;
+  box-shadow: var(--shadow-lg);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.dict-panel h2 { color: #d97706; font-size: 1.0rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.dict-search { display: flex; gap: 8px; margin-bottom: 14px; }
+.dict-search input { flex: 1; }
+.dict-search-btn {
+  padding: 6px 14px;
+  background: #d97706;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-ui);
+}
+.dict-result {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  min-height: 60px;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+.dict-word { font-size: 1.05rem; font-weight: 800; color: #92400e; }
+.dict-pos { font-size: 0.75rem; font-style: italic; color: var(--gray-600); margin-left: 5px; }
+.dict-def { margin-top: 5px; }
+.dict-example { font-style: italic; color: var(--gray-600); margin-top: 4px; font-size: 0.83rem; }
+.dict-syn { color: #15803d; font-size: 0.80rem; margin-top: 4px; }
+.dict-close-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 8px;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+/* ============================================================
+   RESULTS SCREEN
+   ============================================================ */
+#results-screen {
+  display: none;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+#results-screen.show { display: block; }
+
+.results-header {
+  background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+.results-header h2 { font-size: 1.3rem; margin-bottom: 6px; }
+.results-score-big {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  margin: 8px 0;
+}
+.results-meta { font-size: 0.85rem; opacity: 0.85; }
+
+.results-section {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+}
+.results-section h3 { font-size: 0.90rem; font-weight: 700; color: var(--blue); margin-bottom: 10px; border-bottom: 1px solid var(--gray-200); padding-bottom: 6px; }
+
+.result-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.84rem;
+}
+.result-row:last-child { border-bottom: none; }
+.result-row .rr-q { font-weight: 700; min-width: 30px; }
+.result-row .rr-status { font-size: 1rem; }
+.result-row .rr-detail { color: var(--gray-600); flex: 1; }
+
+.strength-item, .reteach-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.84rem;
+  margin-bottom: 7px;
+  line-height: 1.5;
+}
+.strength-item::before { content: "✅"; }
+.reteach-item::before  { content: "📌"; }
+
+.submit-teacher-btn {
+  padding: 12px 30px;
+  background: var(--purple);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  margin-right: 10px;
+  transition: background 0.2s;
+}
+.submit-teacher-btn:hover { background: #5b21b6; }
+
+.download-btn {
+  padding: 12px 24px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: background 0.2s;
+}
+.download-btn:hover { background: #15803d; }
+
+.submission-msg {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: none;
+}
+.submission-msg.show { display: block; }
+.submission-success { background: var(--green-light); color: #15803d; border: 1px solid var(--green); }
+.submission-error   { background: var(--coral-light); color: #b91c1c; border: 1px solid var(--coral); }
+
+/* ============================================================
+   RESPONSIVE / MISC
+   ============================================================ */
+@media (max-width: 900px) {
+  #app-wrapper { grid-template-columns: 1fr; }
+  #left-sidebar, #right-sidebar { display: none; }
+}
+
+.hidden { display: none !important; }
+.bold-key { font-weight: 700; }
+
+/* EB bilingual prompt */
+.bilingual-note {
+  display: none;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.76rem;
+  color: #14532d;
+  margin-top: 5px;
+}
+.bilingual-note.show { display: block; }
+
+/* Dictionary entry question format */
+.dict-entry-box {
+  background: #fffbeb;
+  border: 2px solid #fde68a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  font-family: var(--font-main);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.dict-entry-word { font-size: 1.05rem; font-weight: 800; }
+.dict-entry-pron { font-size: 0.80rem; color: var(--gray-600); font-style: italic; }
+.dict-entry-pos  { font-style: italic; color: var(--gray-600); font-size: 0.83rem; }
+.dict-entry-guide { font-size: 0.75rem; color: #b45309; margin-bottom: 6px; font-family: var(--font-ui); }
+.dict-entry-meanings { padding-left: 14px; }
+.dict-entry-meanings li { margin-bottom: 4px; }
+
+/* Read more / chunk toggle */
+.passage-chunk { display: block; }
+.passage-chunk.hidden-chunk { display: none; }
+
+/* Tooltip */
+.tooltip-wrap { position: relative; display: inline-block; }
+.tooltip-text {
+  display: none;
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gray-800);
+  color: #fff;
+  font-size: 0.72rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 10;
+}
+.tooltip-wrap:hover .tooltip-text { display: block; }
+
+/* Separator */
+.sep { height: 1px; background: var(--gray-200); margin: 4px 0; }
+
+/* Loading */
+.loading-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Chunked text emphasis for EB */
+.eb-bold {
+  font-weight: 700;
+  color: #1e40af;
+  border-bottom: 2px dotted #1e40af;
+  cursor: help;
+  position: relative;
+  display: inline-block;
+}
+.eb-bold .eb-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 400;
+  padding: 7px 11px;
+  border-radius: 8px;
+  white-space: nowrap;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  min-width: 160px;
+  max-width: 240px;
+  white-space: normal;
+  line-height: 1.5;
+  text-align: left;
+  pointer-events: none;
+}
+.eb-bold .eb-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1e293b;
+}
+.eb-bold:hover .eb-tooltip { display: block; }
+.eb-tooltip .eb-tip-word { font-weight: 700; font-size: 0.82rem; color: #93c5fd; }
+.eb-tooltip .eb-tip-def  { margin-top: 3px; }
+.eb-tooltip .eb-tip-ex   { margin-top: 3px; color: #94a3b8; font-style: italic; font-size: 0.72rem; }
+
+/* Support tools locked state */
+.support-tools-locked {
+  opacity: 0.45;
+  pointer-events: none;
+  position: relative;
+}
+.support-lock-msg {
+  display: none;
+  font-size: 0.73rem;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Retry typed */
+.retry-btn {
+  padding: 7px 18px;
+  background: #f59e0b;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.83rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  margin-top: 8px;
+  margin-right: 8px;
+}
+.retry-btn:hover { background: #d97706; }
+</style>
+</head>
+<body>
+<div id="app-wrapper">
+
+<!-- TOP BAR -->
+<div id="top-bar">
+  <div>
+    <h1>📝 5th Grade ELA STAAR — Revising &amp; Editing Review</h1>
+    <div class="tagline">Mrs. Claudio · Interactive Practice</div>
+  </div>
+  <div class="top-bar-right">
+    <span id="top-guided-badge" style="background:#a78bfa;color:#2e1065;padding:3px 10px;border-radius:10px;font-weight:700;font-size:0.75rem;display:none;">🧭 Guided Mode ON</span>
+    <span id="top-accom-badge" style="background:#fbbf24;color:#78350f;padding:3px 10px;border-radius:10px;font-weight:700;font-size:0.75rem;display:none;">⭐ Supports ON</span>
+  </div>
+</div>
+
+<!-- LEFT SIDEBAR -->
+<div id="left-sidebar">
+  <!-- Student Info -->
+  <div class="sidebar-card">
+    <h3>👩‍🏫 Class Info</h3>
+    <span class="sidebar-label">Teacher</span>
+    <div style="font-weight:700;font-size:0.88rem;margin-bottom:8px;">Mrs. Claudio</div>
+    <span class="sidebar-label">Class</span>
+    <select id="class-select">
+      <option value="">— Select Class —</option>
+      <option value="Mrs. Claudio's HR">Mrs. Claudio's HR</option>
+      <option value="Ms. Chavez's HR">Ms. Chavez's HR</option>
+    </select>
+    <span class="sidebar-label">Student Name</span>
+    <select id="student-select" disabled>
+      <option value="">— Select Student —</option>
+    </select>
+    <div class="accom-badge" id="accom-badge">⭐ Supports Enabled</div>
+    <div class="bilingual-note" id="bilingual-note">🌐 Bilingual support is available. Use the vocabulary hints and context clue tools.</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="sidebar-card">
+    <h3>📊 Progress</h3>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar"></div></div>
+    <div class="progress-text" id="progress-text">Question 0 of 0</div>
+    <div style="font-size:0.78rem;opacity:0.85;margin-top:5px;">Score: <span id="sidebar-score" style="font-weight:700;">0/0</span></div>
+    <div style="font-size:0.75rem;opacity:0.7;margin-top:3px;">Selection: <span id="sidebar-sel">—</span></div>
+  </div>
+
+  <!-- Supports Toggle -->
+  <div class="sidebar-card">
+    <h3>🛠 Support Tools</h3>
+    <!-- Dictionary always available to all students -->
+    <button class="sidebar-btn btn-dict" onclick="openDictionary()">📖 Dictionary Tool</button>
+    <!-- Accommodation-only tools -->
+    <div id="accom-tools-wrap">
+      <button class="sidebar-btn btn-tts" id="tts-toggle-btn" onclick="toggleTTS()">🔊 Text-to-Speech: OFF</button>
+      <button class="sidebar-btn btn-stt" id="stt-toggle-btn" onclick="toggleSTT()">🎤 Speech-to-Text: OFF</button>
+      <button class="sidebar-btn btn-guide" id="guided-toggle-btn" onclick="toggleGuidedMode()">🧭 Guided Mode: OFF</button>
+      <div class="sep"></div>
+      <button class="sidebar-btn btn-supports" onclick="toggleAllSupports()">⚙️ Turn Supports On/Off</button>
+      <div class="support-lock-msg" id="support-lock-msg">Select your name to unlock supports</div>
+    </div>
+  </div>
+
+  <!-- Strategies -->
+  <div class="sidebar-card">
+    <h3>💡 Quick Strategies</h3>
+    <ul class="strategy-list">
+      <li>Read the whole sentence first</li>
+      <li>Look for clues nearby</li>
+      <li>Eliminate 2 wrong choices</li>
+      <li>For revising: check clarity</li>
+      <li>For editing: check grammar & punctuation</li>
+      <li>Use color codes to mark text</li>
+      <li>Reread your typed response</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MAIN CONTENT AREA -->
+<div id="main-content">
+  <!-- Start screen -->
+  <div id="start-screen">
+    <div style="background:#fff;border-radius:12px;padding:28px 28px;box-shadow:var(--shadow-lg);max-width:600px;margin:0 auto;text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:10px;">📝</div>
+      <h2 style="color:var(--blue);font-size:1.3rem;margin-bottom:10px;">Welcome to STAAR Revising &amp; Editing Review!</h2>
+      <p style="color:var(--gray-600);font-size:0.90rem;line-height:1.65;margin-bottom:18px;">
+        This activity will help you practice <strong>revising and editing</strong> skills for the 5th Grade STAAR ELA test. You'll read passages, answer questions, and get immediate feedback.
+      </p>
+      <div style="background:var(--blue-light);border-radius:8px;padding:12px 16px;margin-bottom:18px;text-align:left;font-size:0.85rem;line-height:1.7;">
+        <strong>📌 Before you start:</strong><br>
+        1. Select your class from the left sidebar<br>
+        2. Select your name<br>
+        3. Use the color-coding tools to mark important text<br>
+        4. Read feedback carefully before moving on
+      </div>
+      <button class="submit-btn" onclick="startActivity()" style="font-size:1rem;padding:12px 36px;">
+        ▶ Start Review
+      </button>
+    </div>
+  </div>
+
+  <!-- Question Area (hidden until started) -->
+  <div id="question-area" class="hidden">
+    <!-- Selection tabs -->
+    <div class="selection-tabs" id="selection-tabs"></div>
+
+    <!-- Color toolbar -->
+    <div class="color-toolbar">
+      <span>Color Code:</span>
+      <div class="tooltip-wrap"><button class="color-btn" data-color="yellow" onclick="selectColor('yellow')"></button><span class="tooltip-text">🟡 Important Idea</span></div>
+      <div class="tooltip-wrap"><button class="color-btn" data-color="blue"   onclick="selectColor('blue')"></button><span class="tooltip-text">🔵 Evidence/Details</span></div>
+      <div class="tooltip-wrap"><button class="color-btn" data-color="green"  onclick="selectColor('green')"></button><span class="tooltip-text">🟢 Context Clue</span></div>
+      <div class="tooltip-wrap"><button class="color-btn" data-color="pink"   onclick="selectColor('pink')"></button><span class="tooltip-text">🩷 Sentence to Revise</span></div>
+      <div class="tooltip-wrap"><button class="color-btn" data-color="orange" onclick="selectColor('orange')"></button><span class="tooltip-text">🟠 Editing Clue</span></div>
+      <button class="clear-hl-btn" onclick="clearHighlights()">✕ Clear</button>
+      <span id="color-mode-label" style="font-size:0.72rem;color:var(--blue);font-weight:700;margin-left:4px;"></span>
+    </div>
+
+    <!-- Passage card -->
+    <div class="passage-card" id="passage-card">
+      <div class="passage-title" id="passage-title"></div>
+      <div id="passage-type-badge-wrap"></div>
+      <div class="chunk-nav" id="chunk-nav">
+        <button class="chunk-btn" onclick="prevChunk()">◀ Prev Section</button>
+        <span class="chunk-label" id="chunk-label">Section 1</span>
+        <button class="chunk-btn" onclick="nextChunk()">Next Section ▶</button>
+      </div>
+      <div class="passage-text" id="passage-text" onmouseup="applyHighlight()"></div>
+    </div>
+
+    <!-- Question card -->
+    <div class="question-card" id="question-card">
+      <div class="question-header">
+        <span class="q-number-badge" id="q-number-badge">Q1</span>
+        <span class="q-type-badge" id="q-type-badge"></span>
+        <button class="read-aloud-btn" id="read-aloud-btn" onclick="readAloud()" style="display:none;">🔊 Read Aloud</button>
+      </div>
+
+      <!-- Guided steps -->
+      <div class="guided-steps" id="guided-steps"></div>
+
+      <!-- Question text -->
+      <div class="question-text" id="question-text"></div>
+
+      <!-- Dictionary entry box (for dict-type questions) -->
+      <div class="dict-entry-box hidden" id="dict-entry-box"></div>
+
+      <!-- Answer area -->
+      <div id="answer-area"></div>
+
+      <!-- Sentence stems -->
+      <div class="stems-box" id="stems-box">
+        <h4>💬 Sentence Stems</h4>
+        <ul id="stems-list"></ul>
+      </div>
+
+      <!-- Bilingual note inside question -->
+      <div class="bilingual-note" id="q-bilingual-note" style="margin-top:6px;">🌐 Tip: Use the Dictionary Tool to look up any words you don't know.</div>
+
+      <!-- Submit button -->
+      <div style="margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <button class="submit-btn" id="submit-btn" onclick="submitAnswer()">Submit Answer</button>
+        <button class="retry-btn hidden" id="retry-btn" onclick="retryTyped()">🔄 Revise &amp; Retry</button>
+      </div>
+
+      <!-- Feedback -->
+      <div class="feedback-box" id="feedback-box"></div>
+
+      <!-- Think time -->
+      <div class="think-time-box" id="think-time-box"></div>
+
+      <!-- Next button -->
+      <div style="margin-top:12px;">
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results screen -->
+  <div id="results-screen"></div>
+</div>
+
+<!-- RIGHT SIDEBAR -->
+<div id="right-sidebar">
+  <!-- Anchor chart: ARMS Revising -->
+  <div class="ref-card" style="padding:0;overflow:hidden;border:2px solid #222;">
+    <div style="background:#111;color:#fff;font-family:'Trebuchet MS',sans-serif;font-weight:800;font-size:0.85rem;text-align:center;padding:8px 10px;letter-spacing:0.3px;line-height:1.3;">
+      Revising Checklist<br><span style="font-size:1.05rem;letter-spacing:1px;">ARMS</span> :
+    </div>
+    <div style="background:#e8e8e8;padding:10px 12px;font-size:0.74rem;font-family:'Trebuchet MS',sans-serif;">
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">A</span>dd -</div>
+        <div style="font-size:0.70rem;color:#444;margin-left:8px;margin-bottom:3px;font-style:italic;">What does the reader need to know?</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Details</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Descriptive words</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Sensory words</label></div>
+      </div>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">R</span>emove -</div>
+        <div style="font-size:0.70rem;color:#444;margin-left:8px;margin-bottom:3px;font-style:italic;">What doesn't need to be there?</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Unnecessary words or sentences</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Words or sentences that don't make sense</label></div>
+      </div>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">M</span>ove -</div>
+        <div style="font-size:0.70rem;color:#444;margin-left:8px;margin-bottom:3px;font-style:italic;">Could this be in a better place?</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Sentences or words to a better spot</label></div>
+      </div>
+      <div>
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">S</span>ubstitute -</div>
+        <div style="font-size:0.70rem;color:#444;margin-left:8px;margin-bottom:3px;font-style:italic;">What can I replace to make this its best?</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Boring words</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Repetitive words</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Anchor chart: CUPS Editing -->
+  <div class="ref-card" style="padding:0;overflow:hidden;border:2px solid #222;margin-top:4px;">
+    <div style="background:#111;color:#fff;font-family:'Trebuchet MS',sans-serif;font-weight:800;font-size:0.85rem;text-align:center;padding:8px 10px;letter-spacing:0.3px;line-height:1.3;">
+      Editing Checklist<br><span style="font-size:1.05rem;letter-spacing:1px;">CUPS</span> :
+    </div>
+    <div style="background:#e8e8e8;padding:10px 12px;font-size:0.74rem;font-family:'Trebuchet MS',sans-serif;">
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">C</span>apitalization -</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Names</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Titles</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Beginning of sentences</label></div>
+      </div>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">U</span>sage -</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Do nouns and verbs match?</label></div>
+      </div>
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">P</span>unctuation -</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Periods</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Quotations</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Question / Exclamation Marks</label></div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Commas</label></div>
+      </div>
+      <div>
+        <div style="font-size:0.92rem;font-weight:800;"><span style="font-size:1.1rem;">S</span>pelling -</div>
+        <div style="margin-left:14px;"><label><input type="checkbox" style="margin-right:4px;">Check ALL words</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1-Point SCR Rubric -->
+  <div class="ref-card yellow-card">
+    <h3>📋 Typed Response Rubric</h3>
+    <div class="rubric-row"><span class="rubric-score" style="background:var(--green);">1</span><span class="rubric-desc">Complete sentence · Keeps important meaning · Clear and makes sense</span></div>
+    <div class="rubric-row"><span class="rubric-score" style="background:var(--yellow);color:#78350f;">½</span><span class="rubric-desc">Mostly correct but missing part of the idea or slightly unclear</span></div>
+    <div class="rubric-row"><span class="rubric-score" style="background:var(--coral);">0</span><span class="rubric-desc">Incomplete sentence, missing key ideas, or does not revise correctly</span></div>
+  </div>
+
+  <!-- Color Key -->
+  <div class="ref-card orange-card">
+    <h3>🎨 Color Code Key</h3>
+    <ul class="color-legend">
+      <li><span class="legend-swatch" style="background:#fef08a;"></span>Yellow = Important Idea</li>
+      <li><span class="legend-swatch" style="background:#bfdbfe;"></span>Blue = Evidence/Details</li>
+      <li><span class="legend-swatch" style="background:#bbf7d0;"></span>Green = Context Clue</li>
+      <li><span class="legend-swatch" style="background:#fbcfe8;"></span>Pink = Sentence to Revise</li>
+      <li><span class="legend-swatch" style="background:#fed7aa;"></span>Orange = Editing Clue</li>
+    </ul>
+  </div>
+
+  <!-- Editing marks -->
+  <div class="ref-card" style="background:var(--gray-50);">
+    <h3 style="color:var(--coral);border-bottom:2px solid var(--coral);padding-bottom:4px;font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:8px;">✏️ Editing Marks</h3>
+    <div class="edit-marks">
+      <div class="edit-mark-row"><span class="edit-mark-symbol">≡</span><span>Capitalize</span></div>
+      <div class="edit-mark-row"><span class="edit-mark-symbol">/</span><span>Lowercase</span></div>
+      <div class="edit-mark-row"><span class="edit-mark-symbol">^</span><span>Insert word</span></div>
+      <div class="edit-mark-row"><span class="edit-mark-symbol">⌫</span><span>Delete word</span></div>
+      <div class="edit-mark-row"><span class="edit-mark-symbol">☐</span><span>Add period</span></div>
+      <div class="edit-mark-row"><span class="edit-mark-symbol">,</span><span>Add comma</span></div>
+      <div class="edit-mark-row"><span class="edit-mark-symbol">~</span><span>Reverse order</span></div>
+    </div>
+  </div>
+
+  <!-- Sentence stems -->
+  <div class="ref-card purple-card">
+    <h3>💬 Writing Stems</h3>
+    <ul style="font-size:0.75rem;line-height:1.75;">
+      <li>"The author could improve sentence __ by…"</li>
+      <li>"One way to revise this is to…"</li>
+      <li>"The best edit here is to fix…"</li>
+      <li>"The word __ means __ because the clue…"</li>
+      <li>"This sentence needs to be changed because…"</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end app-wrapper -->
+
+<!-- DICTIONARY MODAL -->
+<div id="dict-modal">
+  <div class="dict-panel">
+    <h2>📖 Dictionary Tool</h2>
+    <div class="dict-search">
+      <input type="text" id="dict-input" placeholder="Type a word…" onkeydown="if(event.key==='Enter')dictSearch()">
+      <button class="dict-search-btn" onclick="dictSearch()">Look Up</button>
+    </div>
+    <div class="dict-result" id="dict-result">
+      <em style="color:var(--gray-400);">Type a word above and click Look Up.</em>
+    </div>
+    <button class="dict-close-btn" onclick="closeDictionary()">✕ Close Dictionary</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   SECTION: ROSTER DATA
+   ============================================================ */
+const ROSTERS = {
+  "Mrs. Claudio's HR": [
+    "Aylin Aguilar","Justin Alonzo","Madison Arroyo","Malerie Briseno","Jamar Brown",
+    "Mauricio Cavazos","Mylah Cruz","Carolina Flores","Diego Flores","Anna Gomez",
+    "Raelynn Gutierrez","Alyana Jacinto","Gabriel Moreno","Stephanie Nlemchy",
+    "Penadchara Onkonburi","Zendaya Ornelas Nunez","Jessenia Pena","Ethan Perez",
+    "Romina Perez","Hailee Rodriguez","Casey Rosales","Harlee Ruiz",
+    "Vianka Santana Zuniga","Miyaly Torres","Ashley Trejo Bautista",
+    "Christian Velazquez","Alin Veloz","Queen Wilson"
+  ],
+  "Ms. Chavez's HR": [
+    "Kamila Adame","Jesus Avalos","Jett Ballesteros","Zayden Boyd","Adalynn Buenrostro",
+    "Cesar Cordova","Ismael Del Angel Tapia","Adrianne Diaz","Jacob Diaz",
+    "Brianne Mae Estell","Hunter Farela","Ainara Garay Melo","D'Anthony Garza",
+    "Isabella Gutierrez","Yahel Hinojosa","Violett Lozano","Lydianna Mares",
+    "Dylan Medina","Adriana Munoz Paz","Kaiden Ortega","Arabella Pastrana",
+    "Roman Ramos","Edwin Resendez","Rainnie Reta","Diego Rico",
+    "Sahir Rodriguez Zayas","Albert Rojas","Helena Russell"
+  ]
+};
+
+/* ============================================================
+   SECTION: ACCOMMODATION LOGIC
+   ============================================================ */
+const SPED_STUDENTS = [
+  "Hunter Farela","Zayden Boyd","Violett Lozano","Justin Alonzo",
+  "Jessenia Pena","Isabella Gutierrez","Adalynn Buenrostro",
+  "Dylan Medina","Albert Rojas","Ainara Garay Melo"
+];
+
+const EB_STUDENTS = [
+  "Mauricio Cavazos","Christian Velazquez","Alin Veloz","Romina Perez",
+  "Roman Ramos","Sahir Rodriguez Zayas","Isabella Gutierrez","Dylan Medina",
+  "Jesus Avalos","Kamila Adame","Ismael Del Angel Tapia","Albert Rojas","Ainara Garay Melo"
+];
+
+let currentAccom = { sped: false, eb: false, supportsEnabled: false };
+let guidedMode = false;
+let ttsEnabled = false;
+let sttEnabled = false;
+let sttRecognition = null;
+
+function getAccommodations(name) {
+  const sped = SPED_STUDENTS.includes(name);
+  const eb   = EB_STUDENTS.includes(name);
+  return { sped, eb };
+}
+
+function applyAccommodations(name) {
+  const accom = getAccommodations(name);
+  currentAccom.sped = accom.sped;
+  currentAccom.eb   = accom.eb;
+  currentAccom.supportsEnabled = accom.sped || accom.eb;
+
+  const badge = document.getElementById('accom-badge');
+  const topBadge = document.getElementById('top-accom-badge');
+  const biNote = document.getElementById('bilingual-note');
+  const accomWrap = document.getElementById('accom-tools-wrap');
+  const lockMsg   = document.getElementById('support-lock-msg');
+
+  if (currentAccom.supportsEnabled) {
+    // UNLOCK accommodation tools
+    accomWrap.classList.remove('support-tools-locked');
+    lockMsg.style.display = 'none';
+    badge.style.display = 'block';
+    topBadge.style.display = 'inline-block';
+  } else {
+    // LOCK accommodation tools for non-list students
+    accomWrap.classList.add('support-tools-locked');
+    lockMsg.style.display = 'block';
+    badge.style.display = 'none';
+    topBadge.style.display = 'none';
+    // Reset any accidentally-on states
+    ttsEnabled = false; updateTTSBtn();
+    setGuidedMode(false);
+  }
+
+  if (accom.eb) {
+    biNote.classList.add('show');
+  } else {
+    biNote.classList.remove('show');
+  }
+
+  if (accom.sped) {
+    ttsEnabled = true;
+    updateTTSBtn();
+    setGuidedMode(true);
+    document.getElementById('read-aloud-btn').style.display = 'inline-block';
+  }
+
+  if (accom.sped || accom.eb) {
+    document.getElementById('stems-box').classList.add('show');
+  }
+
+  // EB: bold key words in passage with hover tooltip
+  if (accom.eb) {
+    setTimeout(() => boldEBKeywords(), 300);
+  }
+
+  updateGuidedSteps();
+}
+
+function toggleAllSupports() {
+  // Only accommodation-listed students can toggle supports
+  if (!currentAccom.sped && !currentAccom.eb) return;
+  currentAccom.supportsEnabled = !currentAccom.supportsEnabled;
+  const badge = document.getElementById('accom-badge');
+  const topBadge = document.getElementById('top-accom-badge');
+  if (currentAccom.supportsEnabled) {
+    badge.style.display = 'block';
+    topBadge.style.display = 'inline-block';
+    document.getElementById('stems-box').classList.add('show');
+    setGuidedMode(true);
+  } else {
+    badge.style.display = 'none';
+    topBadge.style.display = 'none';
+    document.getElementById('stems-box').classList.remove('show');
+    setGuidedMode(false);
+  }
+}
+
+/* ============================================================
+   SECTION: TTS / STT
+   ============================================================ */
+function toggleTTS() {
+  ttsEnabled = !ttsEnabled;
+  updateTTSBtn();
+  if (!ttsEnabled && window.speechSynthesis) window.speechSynthesis.cancel();
+}
+function updateTTSBtn() {
+  const btn = document.getElementById('tts-toggle-btn');
+  btn.textContent = ttsEnabled ? '🔊 Text-to-Speech: ON' : '🔊 Text-to-Speech: OFF';
+  btn.style.background = ttsEnabled ? '#10b981' : '#34d399';
+}
+function speak(text) {
+  if (!ttsEnabled || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 0.9;
+  window.speechSynthesis.speak(utter);
+}
+function readAloud() {
+  const passage = document.getElementById('passage-text').innerText;
+  const qtext   = document.getElementById('question-text').innerText;
+  speak(passage + ' ... ' + qtext);
+}
+
+function toggleSTT() {
+  sttEnabled = !sttEnabled;
+  const btn = document.getElementById('stt-toggle-btn');
+  btn.textContent = sttEnabled ? '🎤 Speech-to-Text: ON' : '🎤 Speech-to-Text: OFF';
+  btn.style.background = sttEnabled ? '#e879f9' : '#f472b6';
+  if (sttEnabled) initSTT();
+  else if (sttRecognition) sttRecognition.stop();
+}
+
+function initSTT() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    alert('Speech recognition is not supported in this browser. Try Google Chrome.');
+    sttEnabled = false;
+    document.getElementById('stt-toggle-btn').textContent = '🎤 Speech-to-Text: OFF';
+    return;
+  }
+  sttRecognition = new SR();
+  sttRecognition.continuous = true;
+  sttRecognition.interimResults = false;
+  sttRecognition.onresult = (e) => {
+    const transcript = e.results[e.results.length - 1][0].transcript;
+    const ta = document.querySelector('.typed-area');
+    if (ta) ta.value += transcript + ' ';
+  };
+  sttRecognition.onerror = () => {};
+  sttRecognition.start();
+}
+
+/* ============================================================
+   SECTION: GUIDED MODE
+   ============================================================ */
+function setGuidedMode(val) {
+  guidedMode = val;
+  const btn = document.getElementById('guided-toggle-btn');
+  const topBadge = document.getElementById('top-guided-badge');
+  btn.textContent = guidedMode ? '🧭 Guided Mode: ON' : '🧭 Guided Mode: OFF';
+  btn.style.background = guidedMode ? '#7c3aed' : '#a78bfa';
+  btn.style.color = guidedMode ? '#fff' : '#2e1065';
+  topBadge.style.display = guidedMode ? 'inline-block' : 'none';
+  updateGuidedSteps();
+}
+function toggleGuidedMode() { setGuidedMode(!guidedMode); }
+
+/* ============================================================
+   SECTION: DICTIONARY TOOL DATA
+   ============================================================ */
+const DICTIONARY = {
+  /* — Passage 1: The Last Garden — */
+  "patchwork":      { pos: "noun/adj", def: "A mix of many different pieces or parts joined together; something made up of varied elements.", example: "The quilt was a colorful patchwork of different fabric scraps.", syn: "mixture, mosaic, blend" },
+  "overgrown":      { pos: "adj", def: "Covered with plants or weeds that have grown too much and are out of control.", example: "The old path was overgrown with tall grass and weeds.", syn: "wild, untended, weedy" },
+  "overwhelmed":    { pos: "adj", def: "Feeling like a situation is too much to handle; flooded with emotion or difficulty.", example: "She felt overwhelmed by how much homework she had to finish.", syn: "overcome, swamped, flooded" },
+  "determination":  { pos: "noun", def: "A strong decision to do something; firmness of purpose.", example: "Her determination helped her finish the race despite her sore ankle.", syn: "resolve, willpower, persistence" },
+  "precious":       { pos: "adj", def: "Of great value or importance; something you care deeply about.", example: "The old photograph was precious to the whole family.", syn: "valuable, cherished, treasured" },
+  /* — Passage 2: Monarch Butterflies — */
+  "migration":      { pos: "noun", def: "The movement of animals or people from one place to another, usually over a long distance and in a pattern.", example: "The migration of monarch butterflies spans thousands of miles.", syn: "movement, journey, relocation" },
+  "navigation":     { pos: "noun", def: "The skill or process of figuring out where you are and how to get where you want to go.", example: "The sailor used the stars for navigation across the ocean.", syn: "direction-finding, steering, pathfinding" },
+  "fragile":        { pos: "adj", def: "Easily broken or damaged; delicate.", example: "Handle the glass butterfly with care — it is very fragile.", syn: "delicate, breakable, weak" },
+  "mechanisms":     { pos: "noun", def: "The parts or processes that make something work; a system of connected parts.", example: "Scientists study the mechanisms inside a living cell.", syn: "systems, processes, workings" },
+  "extraordinary":  { pos: "adj", def: "Very unusual or impressive; beyond what is normal or expected.", example: "Running a marathon at age ten was an extraordinary achievement.", syn: "remarkable, amazing, exceptional" },
+  "antennae":       { pos: "noun", def: "The long, thin feelers on an insect's head used to sense the world around them. (One is called an antenna.)", example: "The butterfly used its antennae to detect smells in the air.", syn: "feelers, sensors" },
+  "preserve":       { pos: "verb", def: "To keep something safe from harm, damage, or loss.", example: "We must preserve our natural environment for future generations.", syn: "protect, maintain, conserve" },
+  /* — Passage 3: Science Fair Decision — */
+  "quinceañera":    { pos: "noun", def: "A celebration in Latin American culture for a girl's 15th birthday, marking her transition from childhood to young womanhood.", example: "The whole family traveled to celebrate Sofia's quinceañera.", syn: "celebration, coming-of-age ceremony" },
+  "options":        { pos: "noun", def: "The different choices that are available to you.", example: "She had two options: go to the party or stay home and study.", syn: "choices, alternatives, possibilities" },
+  "situation":      { pos: "noun", def: "A set of circumstances or the way things are at a particular time.", example: "The situation was complicated because both events were on the same day.", syn: "circumstance, condition, case" },
+  "weighing":       { pos: "verb", def: "Thinking carefully about the good and bad parts of different choices before deciding.", example: "He spent the evening weighing his options before making a decision.", syn: "considering, evaluating, thinking through" },
+  "decision":       { pos: "noun", def: "A choice that you make after thinking about it.", example: "Making a decision about the science fair was difficult.", syn: "choice, conclusion, resolution" },
+  "celebration":    { pos: "noun", def: "A special event or party to honor something or someone important.", example: "The family planned a big celebration for graduation.", syn: "party, event, festivity" },
+  /* — Passage 4: Raised Garden Bed — */
+  "efficient":      { pos: "adj", def: "Producing the most results for the effort, space, or resources used — without wasting anything.", example: "A raised garden bed is an efficient way to grow food in a small space.", syn: "effective, productive, streamlined" },
+  "adequate":       { pos: "adj", def: "Enough for what is needed; satisfactory.", example: "Make sure you have adequate time to finish your work.", syn: "enough, sufficient, satisfactory" },
+  "substantial":    { pos: "adj", def: "Large in amount or size; more than a little; impressive.", example: "With good care, the garden produced a substantial harvest.", syn: "large, significant, considerable" },
+  "drainage":       { pos: "noun", def: "The process of water flowing away from an area so it doesn't pool or flood.", example: "Good drainage keeps plant roots from sitting in too much water.", syn: "runoff, flow, water removal" },
+  "perlite":        { pos: "noun", def: "A lightweight, white material added to soil to help it drain and stay loose so roots can breathe.", example: "Mixing perlite into the soil helps water drain more easily.", syn: "soil additive, growing medium" },
+  "compost":        { pos: "noun", def: "A mixture of decayed food scraps and plants used to make soil richer and better for growing.", example: "She added compost to the garden to help the vegetables grow bigger.", syn: "mulch, organic matter, fertilizer" },
+  "traditional":    { pos: "adj", def: "Following a long-established custom or method that has been used for a long time.", example: "Traditional in-ground gardens require more weeding than raised beds.", syn: "conventional, classic, standard" },
+  /* — General Academic — */
+  "elaborate":      { pos: "verb/adj", def: "To add more details; very detailed and complex.", example: "She gave an elaborate explanation of how plants grow.", syn: "detailed, complex, extensive" },
+  "perspective":    { pos: "noun", def: "A particular way of thinking about something; a point of view.", example: "From a bird's perspective, the city looked tiny.", syn: "viewpoint, outlook, angle" },
+  "conclude":       { pos: "verb", def: "To decide something after thinking about it; to bring to an end.", example: "The scientist could conclude that the experiment worked.", syn: "determine, decide, finish" },
+  "reluctant":      { pos: "adj", def: "Not wanting to do something; hesitant.", example: "She was reluctant to speak in front of the class.", syn: "unwilling, hesitant, resistant" },
+  "meander":        { pos: "verb", def: "To move slowly in a winding way without a clear direction.", example: "The river would meander through the valley before reaching the sea.", syn: "wander, wind, drift" },
+  "deduce":         { pos: "verb", def: "To figure something out by using clues or logic.", example: "From the footprints, we could deduce that a large animal had passed.", syn: "conclude, infer, figure out" },
+  "vivid":          { pos: "adj", def: "Very bright, strong, or clear; producing clear mental images.", example: "She had a vivid memory of her first day of school.", syn: "bright, clear, striking" },
+  "tradition":      { pos: "noun", def: "A custom or belief passed down from generation to generation.", example: "It is a family tradition to make tamales every December.", syn: "custom, practice, ritual" },
+  "curiosity":      { pos: "noun", def: "A strong desire to know or learn something.", example: "His curiosity led him to take apart the old clock.", syn: "interest, inquisitiveness, wonder" },
+  "evidence":       { pos: "noun", def: "Facts or information that help prove something is true.", example: "The muddy boots were evidence that he had been outside.", syn: "proof, support, clue" },
+  "complex":        { pos: "adj", def: "Made of many parts; not simple; hard to understand.", example: "The scientist used a complex system of pipes and tubes.", syn: "complicated, intricate, involved" },
+  "significant":    { pos: "noun", def: "Important; having meaning or value.", example: "Winning the science fair was a significant achievement.", syn: "important, meaningful, notable" },
+  "modify":         { pos: "verb", def: "To make small changes to something to improve it.", example: "She decided to modify her plan after seeing how the test turned out.", syn: "change, adjust, alter" },
+  "revise":         { pos: "verb", def: "To make changes to a piece of writing to improve clarity, ideas, or word choice.", example: "She revised her draft to make the meaning clearer.", syn: "improve, rewrite, change" },
+  "edit":           { pos: "verb", def: "To fix grammar, spelling, punctuation, and capitalization errors in a piece of writing.", example: "He edited his essay and fixed three comma errors.", syn: "correct, fix, proofread" },
+  "context":        { pos: "noun", def: "The words and sentences around an unknown word that help you figure out its meaning.", example: "Use the context clues around the word to figure out what it means.", syn: "surrounding text, clues, setting" },
+  "redundant":      { pos: "adj", def: "Saying the same thing more than once, using unnecessary extra words.", example: "Saying 'free gift' is redundant because all gifts are free.", syn: "repetitive, unnecessary, extra" },
+  "transition":     { pos: "noun", def: "A word, phrase, or sentence that connects one idea to the next, creating smooth flow.", example: "Words like 'however,' 'in addition,' and 'therefore' are transitions.", syn: "connection, bridge, linking word" },
+  "navigation":     { pos: "noun", def: "The skill of finding your way from one place to another.", example: "The ship's captain relied on star navigation to cross the ocean.", syn: "direction-finding, pathfinding, steering" }
+};
+
+function openDictionary() { document.getElementById('dict-modal').classList.add('show'); }
+function closeDictionary() { document.getElementById('dict-modal').classList.remove('show'); }
+
+function dictSearch() {
+  const word = document.getElementById('dict-input').value.trim().toLowerCase();
+  const result = document.getElementById('dict-result');
+  const entry = DICTIONARY[word];
+  if (!entry) {
+    result.innerHTML = `<em style="color:var(--gray-400);">No entry found for "<strong>${word}</strong>". Try another word, or look for clues in the passage.</em>`;
+    return;
+  }
+  result.innerHTML = `
+    <div class="dict-word">${word}</div>
+    <div><span class="dict-pos">(${entry.pos})</span></div>
+    <div class="dict-def">${entry.def}</div>
+    ${entry.example ? `<div class="dict-example">"${entry.example}"</div>` : ''}
+    ${entry.syn ? `<div class="dict-syn">Synonyms: ${entry.syn}</div>` : ''}
+  `;
+}
+
+/* ============================================================
+   SECTION: PASSAGE / QUESTION DATA
+   ============================================================ */
+const SELECTIONS = [
+  {
+    id: "S1",
+    title: "The Last Garden",
+    type: "realistic-fiction",
+    typeLabel: "Realistic Fiction",
+    badgeClass: "badge-fiction",
+    passage: [
+      { id:"s1", text: "Every summer, Marisol helped her grandmother tend the small vegetable garden in the backyard." },
+      { id:"s2", text: "The garden was a patchwork of green — rows of tomatoes, squash, and chiles that grew thick and tall under the Texas sun." },
+      { id:"s3", text: "This summer, though, Abuela was sick, and the garden had become overgrown with weeds." },
+      { id:"s4", text: "Marisol stood at the edge of the garden and stared at the mess." },
+      { id:"s5", text: "She felt overwhelmed, but she also felt something else — a quiet determination to fix it." },
+      { id:"s6", text: "She grab a hoe from the shed and she started pulling weeds one by one." },
+      { id:"s7", text: "Hours later, with dirt on her hands and sweat on her face, Marisol stepped back and admired what she had done." },
+      { id:"s8", text: "The garden didn't look perfect, but it looked alive again." },
+      { id:"s9", text: "When Abuela came to the window and saw the cleared rows, her face changed in a way Marisol had never seen before." },
+      { id:"s10", text: "It was the look of someone who had been given back something precious." }
+    ],
+    chunks: [
+      [0,1,2,3,4],
+      [5,6,7,8,9]
+    ],
+    ebKeywords: ["determination","overwhelmed","patchwork","precious","overgrown"],
+    questions: [
+      {
+        id: "S1Q1",
+        type: "revise-mc",
+        typeLabel: "Revising",
+        typeClass: "qt-revise",
+        text: "Sentence 6 is unclear and contains an error in verb tense. Which revision best corrects this sentence while keeping the original meaning?",
+        choices: [
+          { letter: "A", text: "She grabbed a hoe from the shed, and she started pulling weeds one by one." },
+          { letter: "B", text: "She grabs a hoe from the shed and start pulling weeds one by one." },
+          { letter: "C", text: "Grabbing a hoe from the shed, and pulling weeds one by one was what she did." },
+          { letter: "D", text: "She grab a hoe and weeds were pulled from the garden one by one." }
+        ],
+        correct: "A",
+        feedback: {
+          correct: "Choice A correctly fixes the verb tense to past tense (grabbed) and adds a comma before the coordinating conjunction 'and' to properly join two independent clauses. This keeps the original meaning clear.",
+          incorrect: "Choice A is correct because it fixes 'grab' to 'grabbed' (past tense, consistent with the story) and properly punctuates the compound sentence with a comma before 'and.'",
+          distractors: {
+            "B": "Choice B changes 'grabbed' to present tense 'grabs' and leaves 'start' with no -ed ending, creating inconsistent tense.",
+            "C": "Choice C uses a participial phrase that makes the sentence awkward and changes the direct, clear meaning of the original.",
+            "D": "Choice D keeps the original error 'grab' and changes the sentence to passive voice, losing the focus on Marisol as the actor."
+          },
+          reteach: "📌 REVISING TIP: When you revise, look for consistent verb tense. If the story is told in past tense, all action verbs should be past tense (walked, grabbed, started). Also check compound sentences — two independent clauses joined by 'and' need a comma before 'and.'"
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read sentence 6 carefully. Look for the verbs. Are they all in the same tense?" },
+          { label: "FIND", text: "Highlight or circle the verbs in sentence 6. Compare them to the verbs in sentences 4 and 5." },
+          { label: "THINK", text: "What kind of fix does this sentence need? Verb tense? Punctuation? Word choice?" },
+          { label: "ANSWER", text: "Choose the revision that fixes the tense AND keeps the original meaning." }
+        ],
+        hint: "Look at the very first verb in the sentence. What tense should it be in — past or present? The rest of the story is in past tense.",
+        stems: ["The verb 'grab' should be changed to ____ because…", "This sentence needs a comma because…", "The best revision keeps the meaning clear by…"]
+      },
+      {
+        id: "S1Q2",
+        type: "edit-mc",
+        typeLabel: "Editing",
+        typeClass: "qt-edit",
+        text: "Read the sentence below from the passage:\n\n\"She felt overwhelmed, but she also felt something else — a quiet determination to fix it.\"\n\nA student rewrote this sentence and made a capitalization error. Which version contains the error?",
+        choices: [
+          { letter: "A", text: "She felt overwhelmed, but she also felt something else — a quiet Determination to fix it." },
+          { letter: "B", text: "she felt overwhelmed, but she also felt something else — a quiet determination to fix it." },
+          { letter: "C", text: "She felt overwhelmed, but she also felt something else — a quiet determination to fix it." },
+          { letter: "D", text: "She felt overwhelmed. But she also felt something else — a quiet determination to fix it." }
+        ],
+        correct: "A",
+        feedback: {
+          correct: "Choice A incorrectly capitalizes 'Determination' — this is a common noun, not a proper noun, so it should be lowercase in the middle of a sentence.",
+          incorrect: "Choice A is the version with the error. 'Determination' is a common noun and should NOT be capitalized in the middle of a sentence. Only proper nouns (names of specific people, places, or things) get capitalized mid-sentence.",
+          distractors: {
+            "B": "Choice B starts the sentence with a lowercase letter — that is also an error, but that is NOT what the question asked you to find. Read carefully!",
+            "C": "Choice C is the CORRECT version — no errors. But the question asked you to FIND the error.",
+            "D": "Choice D splits the sentence into two, which changes the structure slightly but does not introduce a capitalization error."
+          },
+          reteach: "📌 EDITING TIP: Only capitalize: (1) the first word of a sentence, (2) proper nouns — names of specific people, places, organizations, or titles. Words like 'determination,' 'garden,' 'summer,' and 'hoe' are common nouns and should be lowercase in the middle of a sentence."
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read each choice carefully. Look at every word that starts with a capital letter." },
+          { label: "FIND", text: "Ask: is this word a proper noun (a specific name) OR the first word in a sentence?" },
+          { label: "THINK", text: "Which choice capitalizes a word that does NOT need to be capitalized?" },
+          { label: "ANSWER", text: "Choose the sentence with the capitalization mistake." }
+        ],
+        hint: "A word in the middle of a sentence should only be capitalized if it is a proper noun — a specific name. Is 'determination' a name of a person, place, or thing?",
+        stems: ["The word ____ should not be capitalized because…", "Proper nouns are capitalized because…", "This is an error because…"]
+      },
+      {
+        id: "S1Q3",
+        type: "vocab-mc",
+        typeLabel: "Vocabulary (5.3B)",
+        typeClass: "qt-vocab",
+        text: "Read sentence 5 from the passage:\n\n\"She felt overwhelmed, but she also felt something else — a quiet determination to fix it.\"\n\nUsing context clues from the surrounding sentences, what is the most likely meaning of the word determination as it is used in this sentence?",
+        choices: [
+          { letter: "A", text: "A feeling of sadness and loss" },
+          { letter: "B", text: "Confusion about what to do next" },
+          { letter: "C", text: "A need to ask someone else for help" },
+          { letter: "D", text: "A strong decision or commitment to accomplish something" }
+        ],
+        correct: "D",
+        feedback: {
+          correct: "Choice D is correct. 'Determination' means a firm decision to accomplish something. The context clue comes from the sentence that follows — Marisol picks up a hoe and begins pulling weeds immediately. Her action shows she made a strong, committed decision to fix the garden.",
+          incorrect: "The clue is in what Marisol does NEXT. She picks up a hoe and starts working right away. That action shows she made a firm, committed decision — that is 'determination.'",
+          distractors: {
+            "A": "Sadness is partially supported — she sees the mess — but the word 'determination' signals a positive, active feeling, not just sadness.",
+            "B": "Marisol does not show confusion. She immediately takes action, which is the opposite of being confused.",
+            "C": "Marisol works alone without asking for help, so 'needing help' does not match the context."
+          },
+          reteach: "📌 CONTEXT CLUE TIP: When you see an unfamiliar word, don't stop! Keep reading. Look at what the character DOES right after — their actions often give you the best clue about what the word means. Highlight the action clue in green!"
+        },
+        guidedSteps: [
+          { label: "READ", text: "Reread sentence 5 and sentences 6–7. What does Marisol do right after feeling this 'determination'?" },
+          { label: "FIND", text: "Highlight sentences 6 and 7 in green — these are your CONTEXT CLUES." },
+          { label: "THINK", text: "Someone who picks up a hoe and starts working right away is showing what kind of feeling?" },
+          { label: "ANSWER", text: "Choose the meaning that best matches Marisol's actions." }
+        ],
+        hint: "Look at what Marisol does IMMEDIATELY after feeling this emotion. Her actions are your best clue!",
+        stems: ["The word 'determination' most likely means ___ because…", "The clue in the text that helped me is…", "I can tell the meaning is not ___ because…"]
+      },
+      {
+        id: "S1Q4",
+        type: "typed",
+        typeLabel: "Typed Revision",
+        typeClass: "qt-typed",
+        text: "The following two sentences from a student's draft are choppy and repetitive:\n\n\"Marisol was tired. Marisol kept working anyway.\"\n\nRevise these two sentences by combining them into ONE clear, effective sentence. Keep the most important ideas.",
+        correctKeywords: ["marisol","tired","kept working","continued","anyway","despite","even though","still","worked"],
+        minKeywords: 3,
+        modelAnswer: "Although Marisol was tired, she kept working anyway.",
+        altExamples: ["Even though she was tired, Marisol kept working anyway.", "Marisol was tired, but she kept working anyway.", "Despite being tired, Marisol continued to work."],
+        feedback: {
+          correct: "✅ Excellent revision! Your sentence combines both ideas clearly using a connecting word (like 'although,' 'but,' or 'despite') to show contrast. The important ideas — Marisol being tired and continuing to work — are both present in one complete sentence.",
+          partial: "🟡 Good effort! Your sentence has some of the key ideas, but check: Did you include BOTH ideas (tired + kept working)? Did you use one complete sentence? Try revising once more.",
+          incorrect: "❌ Your response needs revision. Make sure your answer: (1) is one complete sentence, (2) includes that Marisol was tired, AND (3) includes that she kept working anyway. Try combining the ideas with words like 'but,' 'although,' or 'even though.'"
+        },
+        reteach: "📌 COMBINING SENTENCES: When two short sentences are about related ideas, look for a word that shows the CONNECTION. 'Although' and 'even though' show contrast or surprise. 'But' shows contrast. 'Despite' introduces a setback the person overcame. Choose the connecting word that fits the meaning!",
+        guidedChecklist: ["My response is one complete sentence.","I included that Marisol was tired.","I included that she kept working anyway.","I used a connecting word (but, although, despite, even though).","My sentence sounds clear when I read it aloud."],
+        stems: ["Although Marisol was tired, she…", "Even though she was tired, Marisol…", "Marisol was tired, but she…", "Despite being tired, Marisol…"]
+      }
+    ]
+  },
+
+  {
+    id: "S2",
+    title: "How Monarch Butterflies Navigate",
+    type: "informational",
+    typeLabel: "Informational",
+    badgeClass: "badge-informational",
+    passage: [
+      { id:"s1", text: "Every year, millions of monarch butterflies make an extraordinary journey — a migration of up to 3,000 miles — from Canada and the United States to the forests of central Mexico." },
+      { id:"s2", text: "Scientists have long been curious about how these fragile insects find their way without a map or compass." },
+      { id:"s3", text: "New research reveals that monarchs use the sun as their primary navigation tool." },
+      { id:"s4", text: "However, the sun's position changes throughout the day, which should make navigation difficult." },
+      { id:"s5", text: "Monarchs solve this problem by using an internal clock in their antennae to adjust for the sun's movement." },
+      { id:"s6", text: "Their antennae working like tiny compasses, constantly recalculating the direction of travel." },
+      { id:"s7", text: "In addition to solar navigation, monarchs may also use Earth's magnetic field to help them stay on course." },
+      { id:"s8", text: "Scientists believe that this magnetic sense is especially important on cloudy days when the sun is not visible." },
+      { id:"s9", text: "The monarchs' remarkable navigational ability has amazed researchers for decades, and scientists are still working to fully understand all the mechanisms involved." },
+      { id:"s10", text: "Protecting the habitats along migration routes is essential to preserve this extraordinary natural event." }
+    ],
+    chunks: [
+      [0,1,2,3,4],
+      [5,6,7,8,9]
+    ],
+    ebKeywords: ["migration","navigation","fragile","mechanisms","extraordinary","antennae"],
+    questions: [
+      {
+        id: "S2Q1",
+        type: "edit-mc",
+        typeLabel: "Editing",
+        typeClass: "qt-edit",
+        text: "Sentence 6 contains a grammatical error. Which revision best corrects the error in sentence 6?",
+        choices: [
+          { letter: "A", text: "Their antennae works like tiny compasses, constantly recalculating the direction of travel." },
+          { letter: "B", text: "Their antennae working like tiny compasses and constantly recalculating the direction of travel." },
+          { letter: "C", text: "Their antennae work like tiny compasses, constantly recalculating the direction of travel." },
+          { letter: "D", text: "Their antennae, working like tiny compasses, constantly recalculates the direction of travel." }
+        ],
+        correct: "C",
+        feedback: {
+          correct: "Choice C is correct. 'Antennae' is a plural noun (more than one antenna), so it needs the plural verb 'work,' not 'works.' The original sentence 6 also has a fragment error — it is missing a main verb. Choice C fixes both problems.",
+          incorrect: "The original sentence is a fragment — it has no main verb, only a participial phrase. The subject is the plural noun 'antennae,' which requires 'work' (not 'works').",
+          distractors: {
+            "A": "'Works' is singular but 'antennae' is plural — subject and verb do not agree. This does not fix the error.",
+            "B": "This creates a run-on or fragment by connecting two verb phrases with 'and' without a main verb. It is still a fragment.",
+            "D": "'Recalculates' is singular but needs to match the plural subject. Also, this structure is awkward."
+          },
+          reteach: "📌 EDITING TIP — Subject-Verb Agreement: Always find the SUBJECT of the sentence first. If the subject is plural (antennae, butterflies, scientists), the verb should also be plural (work, fly, study). If the subject is singular, use a singular verb (works, flies, studies)."
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read sentence 6 aloud. Does it sound complete? What is the subject of the sentence?" },
+          { label: "FIND", text: "Find the main verb. Is there one? What number is the subject — singular or plural?" },
+          { label: "THINK", text: "What type of grammar error is this — subject-verb agreement, fragment, or something else?" },
+          { label: "ANSWER", text: "Choose the revision that fixes the verb to match the plural subject 'antennae.'" }
+        ],
+        hint: "'Antennae' means MORE than one antenna. A plural subject needs a plural verb. Which verb form matches plural nouns — 'work' or 'works'?",
+        stems: ["The subject is __ which is plural, so the verb should be…", "This sentence is a fragment because…", "The correct revision changes ___ to ___because…"]
+      },
+      {
+        id: "S2Q2",
+        type: "vocab-mc",
+        typeLabel: "Vocabulary (5.3B)",
+        typeClass: "qt-vocab",
+        text: "Read sentence 2 from the passage:\n\n\"Scientists have long been curious about how these fragile insects find their way without a map or compass.\"\n\nBased on context clues in the passage, what does the word fragile most likely mean?",
+        choices: [
+          { letter: "A", text: "Colorful and beautiful" },
+          { letter: "B", text: "Large and powerful" },
+          { letter: "C", text: "Easily damaged or delicate" },
+          { letter: "D", text: "Extremely fast and efficient" }
+        ],
+        correct: "C",
+        feedback: {
+          correct: "Choice C is correct! 'Fragile' means easily damaged or delicate. The context clue is in the contrast the author sets up — these tiny, delicate insects make a 3,000-mile journey. The word 'fragile' emphasizes their small, delicate nature, which makes their long journey even more impressive.",
+          incorrect: "'Fragile' means easily damaged or delicate. Look at what the author is describing — butterflies. They are small and delicate creatures. Then notice what they accomplish — a 3,000-mile journey. The contrast is the clue!",
+          distractors: {
+            "A": "The passage does not discuss the butterflies' colors, and 'fragile' does not relate to appearance.",
+            "B": "The contrast in the sentence suggests these insects are NOT large and powerful — they are small and delicate.",
+            "D": "The passage focuses on navigation ability, not speed. 'Fragile' is about delicacy, not efficiency."
+          },
+          reteach: "📌 CONTRAST CLUE: Sometimes a word's meaning is revealed by CONTRAST — what comes before or after shows an opposite quality. 'Fragile insects' making a 3,000-mile journey is surprising BECAUSE they are so delicate. That contrast is your clue!"
+        },
+        guidedSteps: [
+          { label: "READ", text: "Reread sentence 1 and sentence 2 together. What is surprising about what these insects can do?" },
+          { label: "FIND", text: "Highlight the phrase 'fragile insects' in green. What does the context around it tell you?" },
+          { label: "THINK", text: "What kind of word would show WHY a 3,000-mile journey is impressive for these butterflies?" },
+          { label: "ANSWER", text: "Choose the meaning that makes the author's contrast make sense." }
+        ],
+        hint: "Think about WHY the author chose the word 'fragile' here. What makes the migration so amazing? It's because these butterflies are so small and ___.",
+        stems: ["The word 'fragile' most likely means ___ because…", "The clue that helped me is…", "The contrast in the sentence tells me that…"]
+      },
+      {
+        id: "S2Q3",
+        type: "dict-mc",
+        typeLabel: "Dictionary Entry",
+        typeClass: "qt-dict",
+        text: "Use the dictionary entry below to answer the question.\n\nWhich meaning of the word preserve best matches how it is used in sentence 10?",
+        dictEntry: `
+          <div class="dict-entry-guide">Guide words: <strong>press · pretty</strong></div>
+          <div class="dict-entry-word">pre·serve</div>
+          <div class="dict-entry-pron">(pri-ZURV)</div>
+          <div class="dict-entry-pos">verb</div>
+          <ol class="dict-entry-meanings">
+            <li><strong>1.</strong> To keep food from spoiling by sealing, pickling, or freezing. <em>Example: My grandmother likes to preserve peaches in the summer.</em></li>
+            <li><strong>2.</strong> To protect something from harm, damage, or destruction. <em>Example: The city voted to preserve the old library building.</em></li>
+            <li><strong>3.</strong> To maintain something in its original or existing state. <em>Example: Scientists work hard to preserve rare species of plants.</em></li>
+            <li><strong>4.</strong> To continue or keep up a tradition or way of life. <em>Example: Many cultures work to preserve their language and customs.</em></li>
+          </ol>
+        `,
+        choices: [
+          { letter: "A", text: "Definition 2 — to protect something from harm or destruction" },
+          { letter: "B", text: "Definition 1 — to keep food from spoiling" },
+          { letter: "C", text: "Definition 4 — to continue a tradition or way of life" },
+          { letter: "D", text: "Definition 3 — to maintain something in its original state" }
+        ],
+        correct: "A",
+        sentenceRef: "Sentence 10: 'Protecting the habitats along migration routes is essential to preserve this extraordinary natural event.'",
+        feedback: {
+          correct: "Choice A is correct! In sentence 10, 'preserve' means to protect something from harm or destruction. The author is saying that migration routes (habitats) must be protected so this natural event is not destroyed or lost.",
+          incorrect: "In sentence 10, the author says it is important to 'preserve this extraordinary natural event.' The context is about protecting migration routes. Which definition fits — keeping food? Or protecting something valuable from being lost?",
+          distractors: {
+            "B": "Definition 1 is about food preservation, which has nothing to do with butterfly migration routes.",
+            "C": "Definition 4 is about cultural traditions. Butterfly migration is a natural event, not a cultural practice.",
+            "D": "Definition 3 is close but 'original state' refers more to keeping something exactly as it was. Here, the focus is on protection from harm."
+          },
+          reteach: "📌 DICTIONARY ENTRY TIP: Many words have MULTIPLE meanings! Always read the sentence first, then read ALL the definitions. Ask: which definition makes the most sense IN THIS SENTENCE and in THIS CONTEXT? Cross out definitions that clearly don't fit!"
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read sentence 10 carefully. Then read all four definitions in the dictionary entry." },
+          { label: "FIND", text: "Cross out any definitions that do NOT make sense in the sentence (hint: cross out definition 1 first)." },
+          { label: "THINK", text: "What is the author saying must be 'preserved'? Habitats and migration routes — does that mean protecting or keeping food?" },
+          { label: "ANSWER", text: "Choose the definition that makes the most sense in the context of migration and habitats." }
+        ],
+        hint: "The sentence says habitats must be preserved. Habitats are living environments. Which definition is about protection — not food?",
+        stems: ["In this sentence, 'preserve' means ___ because…", "I eliminated definition ___ because…", "The context clue that helped me is…"]
+      },
+      {
+        id: "S2Q4",
+        type: "typed",
+        typeLabel: "Typed Revision",
+        typeClass: "qt-typed",
+        text: "A student wrote the following introduction for a report about monarch butterflies:\n\n\"Monarch butterflies are insects. They migrate. The migration is long.\"\n\nRevise these three sentences into ONE or TWO clear, well-written sentences. Keep all the important ideas.",
+        correctKeywords: ["monarch butterflies","migrate","long","journey","miles","insects","every year","migration"],
+        minKeywords: 3,
+        modelAnswer: "Monarch butterflies are insects that make an extraordinarily long migration each year, traveling thousands of miles to reach their destination.",
+        altExamples: [
+          "Every year, monarch butterflies — remarkable insects — travel on a long migration across thousands of miles.",
+          "Monarch butterflies are insects that migrate a very long distance each year."
+        ],
+        feedback: {
+          correct: "✅ Great work! Your revision combines all three ideas — butterflies are insects, they migrate, and the migration is long — into one or two clear, flowing sentences. Well done!",
+          partial: "🟡 You combined some ideas, but check: Are all three key ideas present — insects, migration, and length of the journey? Is your response one or two complete sentences?",
+          incorrect: "❌ Try again. Your response should: (1) mention that monarchs are insects, (2) say they migrate, and (3) describe the migration as long or far. Combine these into one or two sentences using connecting words."
+        },
+        reteach: "📌 REVISION TIP: When combining multiple short sentences, look for the main idea and supporting details. You can use relative clauses ('butterflies that migrate'), participial phrases ('traveling thousands of miles'), or simple conjunctions ('and,' 'which') to link ideas smoothly.",
+        guidedChecklist: ["My response is one or two complete sentences.","I included that monarchs are insects.","I included that they migrate.","I described the migration as long or far.","My sentences sound smooth when read aloud."],
+        stems: ["Monarch butterflies are insects that…", "Every year, monarch butterflies migrate…", "These insects make a long migration, which…"]
+      }
+    ]
+  },
+
+  {
+    id: "S3",
+    title: "The Science Fair Decision",
+    type: "personal-narrative",
+    typeLabel: "Personal Narrative",
+    badgeClass: "badge-narrative",
+    passage: [
+      { id:"s1", text: "Last spring, I had to make one of the hardest decisions of my fifth-grade year." },
+      { id:"s2", text: "Our school science fair was the same day as my cousin Sofia's quinceañera, a celebration I had been looking forward to for two years." },
+      { id:"s3", text: "I had already completed my science project — a study of how different types of music affect plant growth — but I hadn't signed up for a presentation time yet." },
+      { id:"s4", text: "My teacher, Mr. Delgado, told me I needed to decide by Friday." },
+      { id:"s5", text: "That night, I sat at the kitchen table and tried to think through my options." },
+      { id:"s6", text: "On one hand, the science fair was important to me. On the other hand, so was Sofia." },
+      { id:"s7", text: "I asked my mom for advice." },
+      { id:"s8", text: "\"Only you can decide what matters most,\" she said, \"but remember — some moments only happen once.\"" },
+      { id:"s9", text: "I stayed up late weighing my options, but by morning I had made up my mind." },
+      { id:"s10", text: "I emailed Mr. Delgado, explained my situation, and asked if I could present my project the following week as a makeup." },
+      { id:"s11", text: "He said yes, and I danced at Sofia's quinceañera with a full heart." }
+    ],
+    chunks: [
+      [0,1,2,3,4,5],
+      [6,7,8,9,10]
+    ],
+    ebKeywords: ["quinceañera","options","situation","weighing","decision","makeup","celebration"],
+    questions: [
+      {
+        id: "S3Q1",
+        type: "revise-mc",
+        typeLabel: "Revising",
+        typeClass: "qt-revise",
+        text: "Which revision of sentence 6 would BEST improve the clarity and flow of the writing?",
+        choices: [
+          { letter: "A", text: "On one hand, the science fair was important to me, and on the other hand, Sofia was also important too as well." },
+          { letter: "B", text: "The science fair was important. Sofia was important. They were both important things." },
+          { letter: "C", text: "Both the science fair and my cousin Sofia's quinceañera were important to me, which made the decision especially difficult." },
+          { letter: "D", text: "On one hand, the science fair. On the other hand, Sofia." }
+        ],
+        correct: "C",
+        feedback: {
+          correct: "Choice C is the best revision because it combines both ideas into one clear, mature sentence and explains WHY the situation was difficult (it makes the decision hard). This revision flows well and avoids redundancy.",
+          incorrect: "Choice C combines both ideas clearly and adds important context — that having two important things to choose between made the DECISION hard. This improves the writing without losing meaning.",
+          distractors: {
+            "A": "Choice A adds the phrase 'also important too as well' — this is redundant. 'Also,' 'too,' and 'as well' all mean the same thing, which creates wordiness, not clarity.",
+            "B": "Choice B breaks the original sentence into even shorter, choppier sentences, making the writing less mature and repeating 'important' three times.",
+            "D": "Choice D creates two fragments — incomplete sentences with no verbs. Fragments are not complete thoughts and lower the quality of writing."
+          },
+          reteach: "📌 REVISING TIP: Good revision removes redundancy (repeating the same idea with different words), combines choppy sentences, and adds meaningful detail. Ask yourself: does my revision IMPROVE the sentence without changing the meaning? Avoid adding extra words that say the same thing twice."
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read sentence 6 from the passage. What is the main idea the writer is trying to express?" },
+          { label: "FIND", text: "Look for the two things being compared. What makes the choice hard?" },
+          { label: "THINK", text: "Which choice eliminates the choppy repetition AND explains why the decision was difficult?" },
+          { label: "ANSWER", text: "Choose the revision that sounds the most mature and clear — not choppy, not redundant." }
+        ],
+        hint: "The best revision should combine the two contrasting ideas smoothly into ONE sentence. Watch out for choices that add extra words that mean the same thing (redundancy)!",
+        stems: ["The best revision improves clarity by…", "Choice ___ is not good because it repeats…", "The writer needs to combine these ideas by…"]
+      },
+      {
+        id: "S3Q2",
+        type: "edit-mc",
+        typeLabel: "Editing",
+        typeClass: "qt-edit",
+        text: "Read the sentence below. A student editing this personal narrative noticed an error in punctuation:\n\n\"Only you can decide what matters most, she said but remember — some moments only happen once.\"\n\nWhich correctly punctuated version of this sentence is written correctly?",
+        choices: [
+          { letter: "A", text: "\"Only you can decide what matters most,\" she said, \"but remember — some moments only happen once.\"" },
+          { letter: "B", text: "\"Only you can decide what matters most\" she said \"but remember — some moments only happen once.\"" },
+          { letter: "C", text: "\"Only you can decide what matters most,\" she said. \"But remember — some moments only happen once.\"" },
+          { letter: "D", text: "Only you can decide what matters most, she said, but remember — some moments only happen once." }
+        ],
+        correct: "A",
+        feedback: {
+          correct: "Choice A is correct! When a direct quote is interrupted by a dialogue tag ('she said'), you need: a comma inside the first quotation mark, the dialogue tag, another comma, and the second part of the quote continues inside new quotation marks. This is called a split quotation.",
+          incorrect: "This is a split dialogue sentence. The pattern is: 'First part of quote,' speaker said, 'second part of quote.' Notice the comma inside the first set of quotation marks, the attribution ('she said'), another comma, and the second part of the quote.",
+          distractors: {
+            "B": "Quotation marks are present but the commas that separate the parts of the split quote are missing, making it hard to read.",
+            "C": "Splitting the quote into two sentences with a period changes the meaning and the connection between the two parts of what was said.",
+            "D": "No quotation marks are used at all, so the reader cannot tell which words were spoken aloud."
+          },
+          reteach: "📌 DIALOGUE PUNCTUATION: When a spoken quote is split by a dialogue tag, use this pattern:\n\"First part,\" speaker said, \"second part.\"\n→ Comma INSIDE the first quote\n→ Lowercase dialogue tag\n→ Comma after tag\n→ Second part of quote in new quotation marks"
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read all four choices aloud. Which one sounds most natural and easy to follow?" },
+          { label: "FIND", text: "Look for: Where does the dialogue tag ('she said') appear? What punctuation comes before and after it?" },
+          { label: "THINK", text: "What is the pattern for a split dialogue sentence? Where do the quotation marks and commas go?" },
+          { label: "ANSWER", text: "Choose the version that correctly uses quotation marks, commas, and the dialogue tag." }
+        ],
+        hint: "The pattern for split dialogue is: 'First part of what was said,' speaker said, 'second part.' Look for commas inside the quotation marks.",
+        stems: ["The correct punctuation for split dialogue is…", "Quotation marks should go around…", "A comma is needed before the closing quotation mark because…"]
+      },
+      {
+        id: "S3Q3",
+        type: "revise-mc",
+        typeLabel: "Revising",
+        typeClass: "qt-revise",
+        text: "A student wants to add a sentence BETWEEN sentence 9 and sentence 10 to make the transition smoother. Which sentence would BEST improve the flow of the narrative at this point?",
+        choices: [
+          { letter: "A", text: "Science fairs are a good way to learn about the scientific method and practice presenting research." },
+          { letter: "B", text: "After considering my options carefully, I realized that there was a possible solution I hadn't thought of yet." },
+          { letter: "C", text: "Sofia's quinceañera was held at a large banquet hall on a Saturday evening." },
+          { letter: "D", text: "I am the kind of person who always makes thoughtful decisions about everything." }
+        ],
+        correct: "B",
+        feedback: {
+          correct: "Choice B best bridges sentences 9 and 10. It connects the idea of 'making up her mind' with the specific action she took (emailing Mr. Delgado), and it introduces the idea of finding a creative solution, which makes the resolution feel earned and logical.",
+          incorrect: "Choice B works because it bridges the gap between 'making up her mind' and the action she took. It explains that she found a solution — making the story's resolution feel logical and connected.",
+          distractors: {
+            "A": "This sentence introduces unrelated information about science fairs in general, which breaks the narrative flow of a personal story.",
+            "C": "Details about the venue of the quinceañera are a tangent — they do not help connect the decision to the resolution.",
+            "D": "This sentence is too broad and self-congratulatory. It does not add meaningful information to connect sentence 9 to sentence 10."
+          },
+          reteach: "📌 TRANSITION SENTENCES: A transition sentence should BRIDGE two ideas. Ask: What happened before this spot? What happens after? Choose a sentence that connects those two moments logically. A good transition points forward to the resolution."
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read sentences 9 and 10 together. What is missing between them? What would help the connection?" },
+          { label: "FIND", text: "Sentence 9: she made up her mind. Sentence 10: she emailed Mr. Delgado. What would make that jump feel smoother?" },
+          { label: "THINK", text: "Which choice CONNECTS the decision to the action without going off topic?" },
+          { label: "ANSWER", text: "Choose the sentence that bridges the gap without adding random or unrelated information." }
+        ],
+        hint: "Look at what comes BEFORE the blank (she made up her mind) and AFTER (she emailed the teacher). Which choice helps that transition feel natural?",
+        stems: ["The best transition sentence connects…", "Choice ___ does not work because it…", "A good bridge sentence should…"]
+      },
+      {
+        id: "S3Q4",
+        type: "typed",
+        typeLabel: "Typed Revision",
+        typeClass: "qt-typed",
+        text: "Rewrite the following student sentence to make it clearer and more precise. Do NOT change the meaning.\n\nOriginal: \"She stayed up late thinking about stuff and then she decided something in the morning.\"\n\nRevise the sentence so it is specific and clear. You may use details from the passage to help.",
+        correctKeywords: ["decision","morning","stayed up","weighing","options","made up","mind","decided","stayed","late"],
+        minKeywords: 3,
+        modelAnswer: "She stayed up late weighing her options, but by morning she had made up her mind.",
+        altExamples: [
+          "She stayed up late thinking about her decision, and by morning she knew what she would do.",
+          "After staying up late considering her choices, she had reached a decision by morning."
+        ],
+        feedback: {
+          correct: "✅ Excellent! Your revision replaces vague words like 'stuff' and 'something' with specific language about her decision and options. The sentence is now clear and precise — great revising!",
+          partial: "🟡 Your sentence is more specific than the original, but check: Did you replace 'stuff' with a specific noun (options, choices, decision)? Did you replace 'decided something' with a clear action?",
+          incorrect: "❌ The original sentence has vague words: 'stuff' and 'something.' Your revision should replace those with specific words from the story. Try: What was she thinking about? What did she decide in the morning?"
+        },
+        reteach: "📌 PRECISION IN WORD CHOICE: Vague words like 'stuff,' 'things,' 'something,' and 'it' make writing unclear. Replace them with specific nouns and clear verbs. Ask: What EXACTLY is the writer talking about? What specific word would show the reader instead of just telling them?",
+        guidedChecklist: ["I replaced the vague word 'stuff' with something specific.","I replaced 'decided something' with a clear, specific action.","My sentence is complete and makes sense.","My sentence matches the meaning of the original.","My sentence sounds clear when I read it aloud."],
+        stems: ["She stayed up late weighing her…", "After thinking carefully about her…, she decided…", "She spent the night considering her options, and by morning…"]
+      }
+    ]
+  },
+
+  {
+    id: "S4",
+    title: "How to Build a Raised Garden Bed",
+    type: "expository",
+    typeLabel: "Expository / Procedural",
+    badgeClass: "badge-expository",
+    passage: [
+      { id:"s1", text: "A raised garden bed is one of the most efficient ways to grow vegetables, herbs, and flowers in a small space." },
+      { id:"s2", text: "Unlike traditional in-ground gardens, raised beds allow you to control the quality of your soil and reduce the risk of weeds." },
+      { id:"s3", text: "Building one requires only a few basic materials and some simple tools." },
+      { id:"s4", text: "First, choose a location that receives at least six hours of sunlight each day." },
+      { id:"s5", text: "Then, gather your materials: untreated lumber boards, corner brackets, screws, a drill, and high-quality soil." },
+      { id:"s6", text: "Assemble the frame by attaching the lumber boards at the corners using the brackets and screws." },
+      { id:"s7", text: "Once the frame is complete, place it on level ground in your chosen location." },
+      { id:"s8", text: "Fill the bed with a mixture of topsoil, compost, and perlite to create the ideal growing environment." },
+      { id:"s9", text: "Water the bed thoroughly before planting, and test the drainage to make sure the bed drains well." },
+      { id:"s10", text: "Plant your seeds or seedlings according to the spacing recommendations on the seed packets." },
+      { id:"s11", text: "With regular watering and sunlight, your raised garden bed will produce a healthy and substantial harvest." }
+    ],
+    chunks: [
+      [0,1,2,3,4,5],
+      [6,7,8,9,10]
+    ],
+    ebKeywords: ["efficient","adequate","substantial","drainage","perlite","compost","traditional"],
+    questions: [
+      {
+        id: "S4Q1",
+        type: "edit-mc",
+        typeLabel: "Editing",
+        typeClass: "qt-edit",
+        text: "Read the sentence below, which a student wrote in a report about raised garden beds:\n\n\"You should use untreated wood, also compost also helps also.\"\n\nWhich revision best corrects the editing errors in this sentence?",
+        choices: [
+          { letter: "A", text: "You should use untreated wood, and adding compost to the soil also helps." },
+          { letter: "B", text: "You should use untreated wood, also you should also compost also as well." },
+          { letter: "C", text: "Untreated wood. Also compost. Helps." },
+          { letter: "D", text: "Using untreated wood also and compost helps the garden also grow." }
+        ],
+        correct: "A",
+        feedback: {
+          correct: "Choice A is correct! It removes the repetitive 'also' and creates one clear, grammatically correct sentence. The conjunction 'and' properly connects the two related ideas, and the sentence flows naturally.",
+          incorrect: "The original sentence repeats 'also' three times, which is redundant. Choice A removes the wordiness and uses 'and' to connect the two ideas clearly.",
+          distractors: {
+            "B": "Choice B keeps all the redundant 'also' words and adds 'as well' — this makes it even MORE wordy and confusing.",
+            "C": "Choice C creates three fragments — incomplete sentences with no subjects or verbs.",
+            "D": "Choice D still contains awkward placement of 'also' and reads unclearly."
+          },
+          reteach: "📌 EDITING TIP — Eliminate Redundancy: When you use 'also,' 'too,' and 'as well' in the same sentence, you repeat the same meaning. Choose ONE connecting word and use it correctly. 'And' is often cleaner and more direct than stacking multiple 'also's."
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read the original sentence aloud. What sounds strange or repeated?" },
+          { label: "FIND", text: "Circle every time the word 'also' appears. How many times does it appear?" },
+          { label: "THINK", text: "What is the best connecting word to use ONCE to join these two ideas?" },
+          { label: "ANSWER", text: "Choose the revision that uses one clear connector and removes the repetition." }
+        ],
+        hint: "Count how many times 'also' appears in the original sentence. Good writing uses a connecting word only once. Which choice removes the extra 'also's?",
+        stems: ["The original sentence repeats ___ too many times, which causes…", "The best revision uses ___ to connect the two ideas because…", "A clearer way to write this would be…"]
+      },
+      {
+        id: "S4Q2",
+        type: "revise-mc",
+        typeLabel: "Revising",
+        typeClass: "qt-revise",
+        text: "A student wrote the following paragraph about raised gardens. Which sentence does NOT belong in the paragraph and should be removed to improve its focus?\n\n(1) A raised garden bed allows you to control soil quality. (2) The frame is easy to build with simple tools. (3) My neighbor once tried to grow tomatoes but the deer ate them all. (4) You can choose the ideal mix of compost and topsoil. (5) The result is a productive and healthy growing space.",
+        choices: [
+          { letter: "A", text: "Sentence 1" },
+          { letter: "B", text: "Sentence 4" },
+          { letter: "C", text: "Sentence 5" },
+          { letter: "D", text: "Sentence 3" }
+        ],
+        correct: "D",
+        feedback: {
+          correct: "Choice D is correct. Sentence 3 is about a neighbor's personal experience with deer — it is off-topic and does not connect to the paragraph's focus on the benefits and construction of a raised garden bed.",
+          incorrect: "When revising for focus, ask: does each sentence support the main idea? The main idea here is the benefits and construction of a raised garden bed. Which sentence introduces an unrelated personal anecdote?",
+          distractors: {
+            "A": "Sentence 1 introduces the main idea (controlling soil quality) — it belongs.",
+            "B": "Sentence 4 explains a key benefit (choosing your soil mix) — it belongs and supports the main idea.",
+            "C": "Sentence 5 provides a strong conclusion about the results — it belongs."
+          },
+          reteach: "📌 REVISING FOR FOCUS: Every sentence in a paragraph should support the main idea. If a sentence introduces a new, unrelated topic (even if it's interesting!), it should be removed. Ask: 'Does this sentence help prove or explain the main idea?' If not — cut it!"
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read all five sentences. What is the main topic of this paragraph?" },
+          { label: "FIND", text: "Identify the main idea: raised garden bed benefits and how to build it. Does every sentence connect to this?" },
+          { label: "THINK", text: "Which sentence talks about something completely different from raised garden beds and soil quality?" },
+          { label: "ANSWER", text: "Choose the sentence that should be removed because it does not support the main idea." }
+        ],
+        hint: "Think about the topic of the paragraph — raised garden beds and how they work. Which sentence talks about something that has NOTHING to do with that topic?",
+        stems: ["Sentence ___ should be removed because it…", "The main idea of the paragraph is ___, and that sentence is about something different…", "A good paragraph stays focused by removing sentences that…"]
+      },
+      {
+        id: "S4Q3",
+        type: "dict-mc",
+        typeLabel: "Dictionary Entry",
+        typeClass: "qt-dict",
+        text: "Use the dictionary entry below to answer the question.\n\nRead sentence 1: 'A raised garden bed is one of the most efficient ways to grow vegetables, herbs, and flowers in a small space.'\n\nWhich meaning of the word efficient best matches how it is used in this sentence?",
+        dictEntry: `
+          <div class="dict-entry-guide">Guide words: <strong>effect · effort</strong></div>
+          <div class="dict-entry-word">ef·fi·cient</div>
+          <div class="dict-entry-pron">(ih-FISH-uhnt)</div>
+          <div class="dict-entry-pos">adjective</div>
+          <ol class="dict-entry-meanings">
+            <li><strong>1.</strong> Completing a task with the least amount of wasted time or energy. <em>Example: The efficient worker finished the job in half the expected time.</em></li>
+            <li><strong>2.</strong> Producing the most results for the amount of effort or resources used. <em>Example: A fuel-efficient car uses less gas to travel the same distance.</em></li>
+            <li><strong>3.</strong> Well-organized and structured for maximum performance. <em>Example: The factory had an efficient system for packaging products.</em></li>
+            <li><strong>4.</strong> Moving quickly without delays or problems. <em>Example: The efficient delivery service arrived ahead of schedule.</em></li>
+          </ol>
+        `,
+        choices: [
+          { letter: "A", text: "Definition 1 — completing a task with the least wasted time" },
+          { letter: "B", text: "Definition 2 — producing the most results for the effort or space used" },
+          { letter: "C", text: "Definition 3 — well-organized for maximum performance" },
+          { letter: "D", text: "Definition 4 — moving quickly without delays" }
+        ],
+        correct: "B",
+        sentenceRef: "Sentence 1: 'A raised garden bed is one of the most efficient ways to grow vegetables, herbs, and flowers in a small space.'",
+        feedback: {
+          correct: "Choice B is the best match. The sentence is saying that a raised garden bed produces a lot of food (results) in a small amount of space (resource). This matches definition 2 — producing the most results for the space used.",
+          incorrect: "The sentence focuses on a raised garden bed being a great way to grow food in a SMALL SPACE. The key is the relationship between space (resource) and results (plants grown). Which definition focuses on getting maximum results from limited resources?",
+          distractors: {
+            "A": "Definition 1 is about time and energy, not about space or growing capacity.",
+            "C": "Definition 3 is about organization, not about the relationship between space and results.",
+            "D": "Definition 4 is about speed, which is not discussed in this context."
+          },
+          reteach: "📌 MULTIPLE MEANINGS IN CONTEXT: When a word has multiple definitions, find the one that matches the CONTEXT. Ask: What is the sentence actually ABOUT? In sentence 1, the key idea is that this garden method produces a lot in a small space. Which definition fits that idea?"
+        },
+        guidedSteps: [
+          { label: "READ", text: "Read sentence 1 again and all four definitions." },
+          { label: "FIND", text: "What is the sentence comparing? It says 'in a small space.' That's a clue about RESOURCES." },
+          { label: "THINK", text: "Which definition connects to using small space effectively to produce results?" },
+          { label: "ANSWER", text: "Choose the definition that matches 'producing the most from a small amount of space.'" }
+        ],
+        hint: "The sentence says 'in a small SPACE.' That means you're getting a lot of results from a small area. Which definition is about getting the most RESULTS from limited RESOURCES?",
+        stems: ["In this sentence, 'efficient' means ___ because…", "The key context clue is the phrase 'in a small space' which tells me…", "I eliminated definition ___ because it talks about ___ and the sentence doesn't mention…"]
+      },
+      {
+        id: "S4Q4",
+        type: "typed",
+        typeLabel: "Typed Revision",
+        typeClass: "qt-typed",
+        text: "A student wrote the following conclusion sentence for a paragraph about raised garden beds:\n\n\"So basically in conclusion the garden bed is like a good thing because it helps with the garden stuff.\"\n\nRevise this sentence to make it clearer, more precise, and appropriate for an academic paragraph. Keep the general meaning.",
+        correctKeywords: ["raised garden bed","grow","vegetables","herbs","soil","efficient","healthy","harvest","plants","space","quality"],
+        minKeywords: 2,
+        modelAnswer: "In conclusion, a raised garden bed is an efficient and effective way to grow healthy vegetables and herbs in any size space.",
+        altExamples: [
+          "A raised garden bed is an excellent choice for gardeners who want to control their soil quality and grow a healthy harvest.",
+          "Overall, raised garden beds offer an efficient and practical method for producing vegetables and herbs at home."
+        ],
+        feedback: {
+          correct: "✅ Well done! Your revision removes vague language ('basically,' 'good thing,' 'garden stuff') and replaces it with specific, academic vocabulary. Your conclusion is now clear and appropriate for a school paragraph.",
+          partial: "🟡 Good effort! Your revision is cleaner than the original, but try to make it even more specific. Replace 'stuff' or vague phrases with exact words — what does the garden bed grow? What makes it a 'good thing'?",
+          incorrect: "❌ The original sentence has several problems: 'basically,' 'like a good thing,' and 'garden stuff' are all vague or informal. Your revision should: (1) remove informal words, (2) use specific academic vocabulary, and (3) explain WHAT makes the garden bed helpful."
+        },
+        reteach: "📌 ACADEMIC WORD CHOICE: In school writing, avoid: 'basically,' 'stuff,' 'things,' 'like a good thing,' 'a lot,' and other informal filler words. Replace them with: specific nouns (vegetables, soil quality), precise adjectives (efficient, effective, productive), and formal sentence starters (In conclusion, Overall, As a result).",
+        guidedChecklist: ["I removed informal words like 'basically' and 'stuff.'","I replaced 'good thing' with a specific, academic adjective.","I explained WHAT makes it helpful (what it grows or what benefit it provides).","My sentence sounds formal and appropriate for school writing.","My sentence is complete and clear."],
+        stems: ["In conclusion, a raised garden bed is…", "A raised garden bed is an effective way to…", "Overall, raised garden beds provide…"]
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   SECTION: APP STATE
+   ============================================================ */
+let state = {
+  started: false,
+  currentSelIdx: 0,
+  currentQIdx: 0,
+  allQuestions: [],    // flat list of all {selIdx, qIdx, question}
+  currentFlat: 0,
+  answered: false,
+  typedRetryAvailable: false,
+  responses: [],       // {qId, type, answer, correct, feedback, score}
+  selectedClass: "",
+  selectedStudent: "",
+  activeColor: null,
+  chunkIdx: 0
+};
+
+function buildFlatQuestions() {
+  state.allQuestions = [];
+  SELECTIONS.forEach((sel, si) => {
+    sel.questions.forEach((q, qi) => {
+      state.allQuestions.push({ selIdx: si, qIdx: qi, question: q, selection: sel });
+    });
+  });
+}
+
+/* ============================================================
+   SECTION: ROSTER / CLASS LOGIC
+   ============================================================ */
+document.getElementById('class-select').addEventListener('change', function() {
+  const cls = this.value;
+  state.selectedClass = cls;
+  const stuSel = document.getElementById('student-select');
+  stuSel.innerHTML = '<option value="">— Select Student —</option>';
+  if (cls && ROSTERS[cls]) {
+    ROSTERS[cls].forEach(name => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      stuSel.appendChild(opt);
+    });
+    stuSel.disabled = false;
+  } else {
+    stuSel.disabled = true;
+  }
+  document.getElementById('sidebar-sel').textContent = cls ? cls.replace("'s HR","") : '—';
+});
+
+document.getElementById('student-select').addEventListener('change', function() {
+  state.selectedStudent = this.value;
+  if (state.selectedStudent) applyAccommodations(state.selectedStudent);
+});
+
+/* ============================================================
+   SECTION: START ACTIVITY
+   ============================================================ */
+function startActivity() {
+  buildFlatQuestions();
+  state.started = true;
+  state.currentFlat = 0;
+  state.responses = [];
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('question-area').classList.remove('hidden');
+  buildSelectionTabs();
+  renderCurrentQuestion();
+}
+
+function buildSelectionTabs() {
+  const tabsEl = document.getElementById('selection-tabs');
+  tabsEl.innerHTML = '';
+  SELECTIONS.forEach((sel, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'sel-tab' + (i === 0 ? ' active' : '');
+    btn.textContent = `Selection ${i+1}: ${sel.title}`;
+    btn.onclick = () => jumpToSelection(i);
+    btn.id = `sel-tab-${i}`;
+    tabsEl.appendChild(btn);
+  });
+}
+
+function jumpToSelection(i) {
+  const first = state.allQuestions.findIndex(q => q.selIdx === i);
+  if (first >= 0) {
+    state.currentFlat = first;
+    renderCurrentQuestion();
+  }
+}
+
+/* ============================================================
+   SECTION: UI RENDERING
+   ============================================================ */
+function renderCurrentQuestion() {
+  if (state.currentFlat >= state.allQuestions.length) {
+    showResults();
+    return;
+  }
+  const item = state.allQuestions[state.currentFlat];
+  const sel  = item.selection;
+  const q    = item.question;
+  state.answered = false;
+  state.typedRetryAvailable = false;
+  state.chunkIdx = 0;
+
+  // Update tabs
+  document.querySelectorAll('.sel-tab').forEach((t, i) => {
+    t.classList.toggle('active', i === item.selIdx);
+  });
+
+  // Passage
+  document.getElementById('passage-title').textContent = sel.title;
+  const typeBadgeWrap = document.getElementById('passage-type-badge-wrap');
+  typeBadgeWrap.innerHTML = `<span class="passage-type-badge ${sel.badgeClass}">${sel.typeLabel}</span>`;
+
+  renderPassage(sel, q);
+
+  // Chunk nav
+  const chunkNav = document.getElementById('chunk-nav');
+  if ((currentAccom.sped || currentAccom.supportsEnabled) && sel.chunks) {
+    chunkNav.classList.add('show');
+    updateChunkDisplay(sel);
+  } else {
+    chunkNav.classList.remove('show');
+    document.querySelectorAll('.passage-chunk').forEach(c => c.classList.remove('hidden-chunk'));
+  }
+
+  // Question header
+  const totalQ = state.allQuestions.length;
+  document.getElementById('q-number-badge').textContent = `Q${state.currentFlat+1}`;
+  document.getElementById('q-type-badge').className = `q-type-badge ${q.typeClass}`;
+  document.getElementById('q-type-badge').textContent = q.typeLabel;
+
+  // Read aloud
+  document.getElementById('read-aloud-btn').style.display = (ttsEnabled || currentAccom.sped) ? 'inline-block' : 'none';
+
+  // Question text
+  const qTextEl = document.getElementById('question-text');
+  qTextEl.textContent = q.text;
+
+  // Dict entry
+  const dictEntryBox = document.getElementById('dict-entry-box');
+  if (q.dictEntry) {
+    dictEntryBox.innerHTML = q.dictEntry;
+    dictEntryBox.classList.remove('hidden');
+    if (q.sentenceRef) {
+      dictEntryBox.innerHTML += `<div style="font-size:0.80rem;color:#7c3aed;margin-top:8px;padding-top:6px;border-top:1px solid #fde68a;font-family:var(--font-ui);"><strong>Target sentence:</strong> ${q.sentenceRef}</div>`;
+    }
+  } else {
+    dictEntryBox.classList.add('hidden');
+    dictEntryBox.innerHTML = '';
+  }
+
+  // Answer area
+  renderAnswerArea(q);
+
+  // Stems
+  renderStems(q);
+
+  // Bilingual note
+  const bNote = document.getElementById('q-bilingual-note');
+  bNote.classList.toggle('show', currentAccom.eb);
+
+  // Guided steps
+  updateGuidedSteps();
+
+  // Clear feedback/next
+  document.getElementById('feedback-box').className = 'feedback-box';
+  document.getElementById('feedback-box').innerHTML = '';
+  document.getElementById('think-time-box').className = 'think-time-box';
+  document.getElementById('think-time-box').innerHTML = '';
+  document.getElementById('next-btn').className = 'next-btn';
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('retry-btn').classList.add('hidden');
+
+  // Progress
+  updateProgress();
+
+  // EB keywords
+  if (currentAccom.eb) setTimeout(() => boldEBKeywords(), 100);
+
+  // Speak
+  if (ttsEnabled) speak(q.text);
+}
+
+function renderPassage(sel, q) {
+  const passEl = document.getElementById('passage-text');
+  passEl.innerHTML = '';
+  sel.passage.forEach((sent, idx) => {
+    const span = document.createElement('span');
+    span.className = 'sentence passage-chunk';
+    span.dataset.idx = idx;
+    span.dataset.chunkGroup = sel.chunks ? sel.chunks.findIndex(c => c.includes(idx)) : 0;
+    const numSpan = document.createElement('span');
+    numSpan.className = 'sent-num';
+    numSpan.textContent = idx+1;
+    span.appendChild(numSpan);
+    span.appendChild(document.createTextNode(' ' + sent.text + ' '));
+    passEl.appendChild(span);
+  });
+}
+
+function renderAnswerArea(q) {
+  const area = document.getElementById('answer-area');
+  area.innerHTML = '';
+
+  if (q.type === 'revise-mc' || q.type === 'edit-mc' || q.type === 'vocab-mc' || q.type === 'dict-mc') {
+    const ul = document.createElement('ul');
+    ul.className = 'choices-list';
+    q.choices.forEach(ch => {
+      const li = document.createElement('li');
+      li.className = 'choice-item';
+      li.dataset.letter = ch.letter;
+      li.innerHTML = `<span class="choice-letter">${ch.letter}</span><span>${ch.text}</span>`;
+      li.onclick = () => selectChoice(ch.letter, li);
+      ul.appendChild(li);
+    });
+    area.appendChild(ul);
+  } else if (q.type === 'typed') {
+    const ta = document.createElement('textarea');
+    ta.className = 'typed-area';
+    ta.placeholder = 'Type your revised sentence here…';
+    ta.id = 'typed-response';
+    ta.maxLength = 500;
+    ta.oninput = function() {
+      document.getElementById('char-counter').textContent = `${this.value.length}/500 characters`;
+      if (sttEnabled && sttRecognition) { /* already handled */ }
+    };
+    area.appendChild(ta);
+    const counter = document.createElement('div');
+    counter.className = 'char-counter';
+    counter.id = 'char-counter';
+    counter.textContent = '0/500 characters';
+    area.appendChild(counter);
+    if (currentAccom.sped && sttEnabled) {
+      const sttBtn = document.createElement('button');
+      sttBtn.textContent = '🎤 Speak Your Answer';
+      sttBtn.className = 'sidebar-btn btn-stt';
+      sttBtn.style.marginTop = '6px';
+      sttBtn.onclick = () => {
+        if (sttRecognition) { sttRecognition.start(); }
+        else { alert('Speech recognition is not supported in this browser.'); }
+      };
+      area.appendChild(sttBtn);
+    }
+  }
+}
+
+let selectedMCLetter = null;
+
+function selectChoice(letter, el) {
+  if (state.answered) return;
+  selectedMCLetter = letter;
+  document.querySelectorAll('.choice-item').forEach(li => li.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function renderStems(q) {
+  const stemsBox = document.getElementById('stems-box');
+  const stemsList = document.getElementById('stems-list');
+  stemsList.innerHTML = '';
+  const stems = q.stems || [];
+  if (stems.length > 0 && (currentAccom.sped || currentAccom.eb || currentAccom.supportsEnabled || guidedMode)) {
+    stemsBox.classList.add('show');
+    stems.forEach(s => {
+      const li = document.createElement('li');
+      li.textContent = s;
+      stemsList.appendChild(li);
+    });
+  } else if (stems.length > 0) {
+    stemsBox.classList.remove('show');
+    stems.forEach(s => {
+      const li = document.createElement('li');
+      li.textContent = s;
+      stemsList.appendChild(li);
+    });
+  } else {
+    stemsBox.classList.remove('show');
+  }
+}
+
+/* ============================================================
+   SECTION: GUIDED MODE STEPS
+   ============================================================ */
+function updateGuidedSteps() {
+  const stepsEl = document.getElementById('guided-steps');
+  if (!guidedMode && !currentAccom.sped) {
+    stepsEl.classList.remove('show');
+    stepsEl.innerHTML = '';
+    return;
+  }
+  const item = state.allQuestions[state.currentFlat];
+  if (!item) { stepsEl.classList.remove('show'); return; }
+  const q = item.question;
+  const steps = q.guidedSteps || [];
+  if (!steps.length) { stepsEl.classList.remove('show'); return; }
+
+  let html = '<div style="font-weight:700;color:var(--purple);font-size:0.82rem;margin-bottom:7px;">🧭 Guided Mode — Follow These Steps:</div>';
+  steps.forEach(step => {
+    html += `<div class="guided-step">
+      <span class="guided-step-label">${step.label}</span>
+      <span class="guided-step-text">${step.text}</span>
+    </div>`;
+  });
+
+  if (q.type === 'typed' && q.guidedChecklist) {
+    html += '<div style="font-weight:600;color:var(--purple);font-size:0.78rem;margin-top:6px;">✅ Checklist before submitting:</div>';
+    html += '<ul class="guided-checklist">';
+    q.guidedChecklist.forEach(item => {
+      html += `<li>${item}</li>`;
+    });
+    html += '</ul>';
+  }
+
+  if (q.hint) {
+    html += `<button class="hint-btn" onclick="toggleHint(this)">💡 Hint</button>
+    <div class="hint-box" id="hint-box">${q.hint}</div>`;
+  }
+
+  stepsEl.innerHTML = html;
+  stepsEl.classList.add('show');
+}
+
+function toggleHint(btn) {
+  const hintBox = document.getElementById('hint-box');
+  if (hintBox) {
+    hintBox.classList.toggle('show');
+    btn.textContent = hintBox.classList.contains('show') ? '💡 Hide Hint' : '💡 Hint';
+  }
+}
+
+/* ============================================================
+   SECTION: SUBMIT / SCORING LOGIC
+   ============================================================ */
+function submitAnswer() {
+  if (state.answered) return;
+  const item = state.allQuestions[state.currentFlat];
+  const q = item.question;
+
+  if (q.type === 'revise-mc' || q.type === 'edit-mc' || q.type === 'vocab-mc' || q.type === 'dict-mc') {
+    if (!selectedMCLetter) {
+      alert('Please select an answer before submitting.');
+      return;
+    }
+    scoreMC(q, selectedMCLetter);
+  } else if (q.type === 'typed') {
+    const ta = document.getElementById('typed-response');
+    if (!ta || !ta.value.trim()) {
+      alert('Please type your revised sentence before submitting.');
+      return;
+    }
+    scoreTyped(q, ta.value.trim());
+  }
+
+  state.answered = true;
+  document.getElementById('submit-btn').disabled = true;
+  showThinkTime(q);
+  setTimeout(() => {
+    document.getElementById('next-btn').classList.add('show');
+  }, currentAccom.sped ? 4500 : 2000);
+}
+
+function scoreMC(q, chosen) {
+  const correct = chosen === q.correct;
+  const feedbackBox = document.getElementById('feedback-box');
+
+  // Highlight choices
+  document.querySelectorAll('.choice-item').forEach(li => {
+    const letter = li.dataset.letter;
+    if (letter === q.correct) li.classList.add('show-correct');
+    if (letter === chosen && !correct) li.classList.add('incorrect');
+  });
+
+  let html = '';
+  if (correct) {
+    feedbackBox.className = 'feedback-box feedback-correct show';
+    html += `<div class="feedback-title"><span class="feedback-icon">✅</span>Correct! Great work!</div>`;
+    html += `<div class="feedback-explanation">${q.feedback.correct}</div>`;
+  } else {
+    feedbackBox.className = 'feedback-box feedback-incorrect show';
+    html += `<div class="feedback-title"><span class="feedback-icon">❌</span>Not quite — but let's look at why.</div>`;
+    html += `<div class="feedback-explanation"><strong>Why the best answer is best:</strong> ${q.feedback.incorrect}</div>`;
+    if (q.feedback.distractors && q.feedback.distractors[chosen]) {
+      html += `<div class="feedback-explanation" style="margin-top:6px;"><strong>Why choice ${chosen} is tempting but wrong:</strong> ${q.feedback.distractors[chosen]}</div>`;
+    }
+  }
+  html += `<div class="feedback-reteach">${q.feedback.reteach}</div>`;
+  feedbackBox.innerHTML = html;
+
+  // Store response
+  state.responses.push({
+    qId: q.id, type: q.typeLabel,
+    answer: chosen, correct, score: correct ? 1 : 0,
+    feedback: correct ? q.feedback.correct : q.feedback.incorrect,
+    selId: item_sel_id()
+  });
+  updateProgress();
+  if (ttsEnabled) speak(correct ? 'Correct! Great work!' : 'Not quite. Let\'s look at the feedback.');
+}
+
+function scoreTyped(q, response) {
+  const feedbackBox = document.getElementById('feedback-box');
+  const resp = response.toLowerCase();
+  const keywords = q.correctKeywords || [];
+  let matched = 0;
+  keywords.forEach(kw => { if (resp.includes(kw.toLowerCase())) matched++; });
+  const isComplete = resp.length > 15 && (resp.endsWith('.') || resp.endsWith('!') || resp.endsWith('?') || resp.length > 20);
+  const score = matched >= (q.minKeywords || 3) && isComplete ? 1 : matched >= Math.floor((q.minKeywords || 3) / 2) ? 0.5 : 0;
+
+  let feedbackClass = score === 1 ? 'feedback-correct' : score === 0.5 ? 'feedback-partial' : 'feedback-incorrect';
+  feedbackBox.className = `feedback-box ${feedbackClass} show`;
+
+  let feedbackMsg = score === 1 ? q.feedback.correct : score === 0.5 ? q.feedback.partial : q.feedback.incorrect;
+  let html = `<div class="feedback-title"><span class="feedback-icon">${score === 1 ? '✅' : score === 0.5 ? '🟡' : '❌'}</span>${score === 1 ? 'Excellent!' : score === 0.5 ? 'Almost there!' : 'Keep trying!'}</div>`;
+  html += `<div class="feedback-explanation">${feedbackMsg}</div>`;
+  html += `<div class="feedback-reteach">${q.reteach}<br><br><strong>Model Answer:</strong> <em>${q.modelAnswer}</em></div>`;
+  if (q.altExamples && q.altExamples.length) {
+    html += `<div style="font-size:0.80rem;margin-top:6px;color:var(--gray-600);"><strong>Other acceptable answers:</strong><br>${q.altExamples.map(e=>`• <em>${e}</em>`).join('<br>')}</div>`;
+  }
+  feedbackBox.innerHTML = html;
+
+  if (score < 1 && !state.typedRetryAvailable) {
+    state.typedRetryAvailable = true;
+    document.getElementById('retry-btn').classList.remove('hidden');
+  }
+
+  state.responses.push({
+    qId: q.id, type: q.typeLabel,
+    answer: response, correct: score === 1, score,
+    feedback: feedbackMsg, selId: item_sel_id()
+  });
+  updateProgress();
+  if (ttsEnabled) speak(score === 1 ? 'Excellent work!' : 'Let\'s review the feedback together.');
+}
+
+function item_sel_id() {
+  const item = state.allQuestions[state.currentFlat];
+  return item ? item.selection.id : '';
+}
+
+function retryTyped() {
+  const ta = document.getElementById('typed-response');
+  if (ta) ta.value = '';
+  state.answered = false;
+  state.typedRetryAvailable = false;
+  document.getElementById('retry-btn').classList.add('hidden');
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('feedback-box').className = 'feedback-box';
+  document.getElementById('feedback-box').innerHTML = '';
+  document.getElementById('think-time-box').className = 'think-time-box';
+  document.getElementById('next-btn').className = 'next-btn';
+  // Remove the last response so it can be re-scored
+  state.responses.pop();
+  updateProgress();
+}
+
+/* ============================================================
+   SECTION: THINK TIME
+   ============================================================ */
+const THINK_PROMPTS = [
+  "💭 What clue in the passage helped you most?",
+  "💭 What strategy will you use again on the next question?",
+  "💭 Could you explain your answer to a partner?",
+  "💭 What should you check for next time?",
+  "💭 How did your color-coding help you find the answer?",
+  "💭 What made some of the wrong answers tempting?",
+  "💭 How did the context clue help you figure out the meaning?"
+];
+
+function showThinkTime(q) {
+  const box = document.getElementById('think-time-box');
+  const prompt = THINK_PROMPTS[Math.floor(Math.random() * THINK_PROMPTS.length)];
+  box.innerHTML = `<p><strong>⏸ Think Time</strong></p><p>Read the feedback carefully before moving on.</p><p class="think-prompt">${prompt}</p>`;
+  box.classList.add('show');
+}
+
+/* ============================================================
+   SECTION: NEXT QUESTION
+   ============================================================ */
+function nextQuestion() {
+  state.currentFlat++;
+  selectedMCLetter = null;
+  renderCurrentQuestion();
+}
+
+/* ============================================================
+   SECTION: PROGRESS
+   ============================================================ */
+function updateProgress() {
+  const total = state.allQuestions.length;
+  const done = state.responses.length;
+  const correct = state.responses.filter(r => r.correct || r.score >= 0.5).length;
+  const pct = total > 0 ? Math.round((done/total)*100) : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `Question ${Math.min(state.currentFlat+1, total)} of ${total}`;
+  document.getElementById('sidebar-score').textContent = `${correct}/${done}`;
+}
+
+/* ============================================================
+   SECTION: CHUNK DISPLAY
+   ============================================================ */
+function updateChunkDisplay(sel) {
+  const chunks = sel.chunks;
+  if (!chunks) return;
+  const allSentences = document.querySelectorAll('.sentence.passage-chunk');
+  allSentences.forEach(s => {
+    const chunkGroup = parseInt(s.dataset.chunkGroup);
+    s.classList.toggle('hidden-chunk', chunkGroup !== state.chunkIdx);
+  });
+  document.getElementById('chunk-label').textContent = `Section ${state.chunkIdx+1} of ${chunks.length}`;
+}
+function prevChunk() {
+  const sel = state.allQuestions[state.currentFlat].selection;
+  if (state.chunkIdx > 0) { state.chunkIdx--; updateChunkDisplay(sel); }
+}
+function nextChunk() {
+  const sel = state.allQuestions[state.currentFlat].selection;
+  if (state.chunkIdx < sel.chunks.length - 1) { state.chunkIdx++; updateChunkDisplay(sel); }
+}
+
+/* ============================================================
+   SECTION: COLOR CODING / HIGHLIGHTING
+   ============================================================ */
+function selectColor(color) {
+  state.activeColor = state.activeColor === color ? null : color;
+  document.querySelectorAll('.color-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.color === state.activeColor);
+  });
+  const label = document.getElementById('color-mode-label');
+  if (state.activeColor) {
+    const names = { yellow:'Important Idea', blue:'Evidence', green:'Context Clue', pink:'Sentence to Revise', orange:'Editing Clue' };
+    label.textContent = `Mode: ${names[state.activeColor]}`;
+  } else {
+    label.textContent = '';
+  }
+}
+
+function applyHighlight() {
+  if (!state.activeColor) return;
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed) return;
+  const range = selection.getRangeAt(0);
+  const passEl = document.getElementById('passage-text');
+  if (!passEl.contains(range.commonAncestorContainer)) return;
+
+  try {
+    const span = document.createElement('span');
+    span.className = `hl-${state.activeColor}`;
+    range.surroundContents(span);
+    selection.removeAllRanges();
+  } catch(e) {}
+}
+
+function clearHighlights() {
+  const passEl = document.getElementById('passage-text');
+  passEl.querySelectorAll('span.hl-yellow,span.hl-blue,span.hl-green,span.hl-pink,span.hl-orange').forEach(span => {
+    const parent = span.parentNode;
+    while (span.firstChild) parent.insertBefore(span.firstChild, span);
+    parent.removeChild(span);
+  });
+}
+
+/* ============================================================
+   SECTION: EB KEYWORD BOLDING WITH HOVER TOOLTIP
+   ============================================================ */
+function boldEBKeywords() {
+  if (!currentAccom.eb) return;
+  const selItem = state.allQuestions[state.currentFlat];
+  if (!selItem) return;
+  const keywords = selItem.selection.ebKeywords || [];
+  const passEl = document.getElementById('passage-text');
+  if (!keywords.length || !passEl) return;
+
+  // Work on each sentence span's text nodes to avoid breaking HTML
+  passEl.querySelectorAll('.sentence').forEach(sentSpan => {
+    // Only process text nodes (not the sent-num span)
+    const childNodes = Array.from(sentSpan.childNodes);
+    childNodes.forEach(node => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+      let text = node.textContent;
+      let changed = false;
+      keywords.forEach(kw => {
+        const regex = new RegExp(`\\b(${escRegex(kw)})\\b`, 'gi');
+        if (regex.test(text)) {
+          changed = true;
+          const entry = DICTIONARY[kw.toLowerCase()];
+          const tipHtml = entry
+            ? `<span class="eb-tooltip"><span class="eb-tip-word">${kw}</span><span class="eb-tip-def">${entry.def}</span>${entry.example ? `<span class="eb-tip-ex">"${entry.example}"</span>` : ''}</span>`
+            : `<span class="eb-tooltip"><span class="eb-tip-word">${kw}</span><span class="eb-tip-def">Look for context clues nearby!</span></span>`;
+          text = text.replace(new RegExp(`\\b(${escRegex(kw)})\\b`, 'gi'),
+            `<span class="eb-bold">$1${tipHtml}</span>`);
+        }
+      });
+      if (changed) {
+        const wrapper = document.createElement('span');
+        wrapper.innerHTML = text;
+        sentSpan.replaceChild(wrapper, node);
+      }
+    });
+  });
+}
+
+function escRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/* ============================================================
+   SECTION: RESULTS SCREEN
+   ============================================================ */
+function showResults() {
+  document.getElementById('question-area').classList.add('hidden');
+  const resultsEl = document.getElementById('results-screen');
+  resultsEl.classList.add('show');
+
+  const total = state.responses.length;
+  const correct = state.responses.filter(r => r.correct || r.score >= 1).length;
+  const partial = state.responses.filter(r => r.score === 0.5).length;
+  const pct = total > 0 ? Math.round(((correct + partial*0.5)/total)*100) : 0;
+
+  // Score by type
+  const byType = {};
+  state.responses.forEach(r => {
+    if (!byType[r.type]) byType[r.type] = { total: 0, correct: 0 };
+    byType[r.type].total++;
+    if (r.correct || r.score >= 0.5) byType[r.type].correct++;
+  });
+
+  let strengthsList = '', reteachList = '';
+  Object.entries(byType).forEach(([type, data]) => {
+    const typePct = Math.round((data.correct/data.total)*100);
+    if (typePct >= 75) strengthsList += `<div class="strength-item">${type} (${data.correct}/${data.total})</div>`;
+    else reteachList += `<div class="reteach-item">${type} — needs more practice (${data.correct}/${data.total})</div>`;
+  });
+
+  let qByQ = '';
+  state.responses.forEach((r, i) => {
+    const icon = r.score === 1 ? '✅' : r.score === 0.5 ? '🟡' : '❌';
+    qByQ += `<div class="result-row">
+      <span class="rr-q">Q${i+1}</span>
+      <span class="rr-status">${icon}</span>
+      <span class="rr-detail"><strong>${r.type}</strong> — ${r.score === 1 ? 'Correct' : r.score === 0.5 ? 'Partial credit' : 'Incorrect'}<br><em style="font-size:0.78rem;">${r.answer.toString().substring(0,80)}${r.answer.toString().length > 80 ? '…' : ''}</em></span>
+    </div>`;
+  });
+
+  resultsEl.innerHTML = `
+    <div class="results-header">
+      <h2>🎉 Review Complete!</h2>
+      <div class="results-score-big">${pct}%</div>
+      <div class="results-meta">
+        <strong>Student:</strong> ${state.selectedStudent || 'Guest'} &nbsp;|&nbsp;
+        <strong>Class:</strong> ${state.selectedClass || '—'} &nbsp;|&nbsp;
+        <strong>Teacher:</strong> Mrs. Claudio
+      </div>
+      <div class="results-meta" style="margin-top:4px;">Score: ${correct + partial*0.5} / ${total} questions (${pct}%)</div>
+    </div>
+    <div class="results-section">
+      <h3>📋 Question-by-Question Results</h3>
+      ${qByQ || '<em>No responses recorded.</em>'}
+    </div>
+    <div class="results-section">
+      <h3>💪 Strengths</h3>
+      ${strengthsList || '<p style="font-size:0.85rem;color:var(--gray-600);">Keep practicing to build strengths!</p>'}
+    </div>
+    <div class="results-section">
+      <h3>📌 Areas to Keep Working On</h3>
+      ${reteachList || '<p style="font-size:0.85rem;color:var(--green);">No major reteach areas identified — great work!</p>'}
+    </div>
+    <div class="results-section">
+      <h3>📤 Submit to Teacher</h3>
+      <button class="submit-teacher-btn" onclick="submitToTeacher()">📤 Submit to Google Sheets</button>
+      <div class="submission-msg" id="submission-msg"></div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   SECTION: GOOGLE SHEETS SUBMISSION LOGIC
+   ============================================================ */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzfn6blKNyowmsfVWaZrwsQXNWFDSnyXaFokVCSZVZnQ1mpdHigKSKs2OYbXtSfNIM/exec";
+
+async function submitToTeacher() {
+  const msgEl = document.getElementById('submission-msg');
+  msgEl.className = 'submission-msg show';
+  msgEl.textContent = '⏳ Submitting…';
+
+  const total = state.responses.length;
+  const correct = state.responses.filter(r => r.correct || r.score >= 0.5).length;
+  const pct = total > 0 ? Math.round(((correct)/total)*100) : 0;
+  const timestamp = new Date().toISOString();
+
+  const rows = state.responses.map(r => ({
+    timestamp,
+    teacher: "Mrs. Claudio",
+    class: state.selectedClass,
+    studentName: state.selectedStudent,
+    selectionId: r.selId,
+    questionId: r.qId,
+    questionType: r.type,
+    studentResponse: r.answer.toString(),
+    correctIncorrect: r.correct ? 'Correct' : (r.score === 0.5 ? 'Partial' : 'Incorrect'),
+    score: r.score,
+    feedbackGiven: r.feedback ? r.feedback.substring(0,200) : '',
+    finalTotalScore: correct,
+    percent: pct
+  }));
+
+  if (!SCRIPT_URL || SCRIPT_URL === "PASTE_GOOGLE_APPS_SCRIPT_URL_HERE") {
+    msgEl.className = 'submission-msg show submission-error';
+    msgEl.textContent = '⚠ No Google Apps Script URL is set. Use the Download CSV button instead.';
+    return;
+  }
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rows })
+    });
+    // no-cors means we can't read the response, but if no exception was thrown the request went through
+    msgEl.className = 'submission-msg show submission-success';
+    msgEl.textContent = '✅ Submitted! Check your Google Sheet in about 10 seconds to confirm the data arrived.';
+  } catch(e) {
+    msgEl.className = 'submission-msg show submission-error';
+    msgEl.textContent = '❌ Submission failed. Please use the Download CSV button instead and give the file to your teacher.';
+  }
+}
+
+function downloadResults() {
+  const total = state.responses.length;
+  const correct = state.responses.filter(r => r.correct || r.score >= 0.5).length;
+  const pct = total > 0 ? Math.round(((correct)/total)*100) : 0;
+  const timestamp = new Date().toISOString();
+
+  const headers = ['Timestamp','Teacher','Class','Student Name','Selection ID','Question ID','Question Type','Student Response','Correct/Incorrect','Score','Feedback Given','Final Total Score','Percent'];
+  const rows = state.responses.map(r => [
+    timestamp, 'Mrs. Claudio', state.selectedClass, state.selectedStudent,
+    r.selId, r.qId, r.type,
+    `"${(r.answer||'').toString().replace(/"/g,'""')}"`,
+    r.correct ? 'Correct' : (r.score === 0.5 ? 'Partial' : 'Incorrect'),
+    r.score, `"${(r.feedback||'').substring(0,100).replace(/"/g,'""')}"`,
+    correct, pct + '%'
+  ]);
+
+  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `ELA_STAAR_Results_${(state.selectedStudent||'Student').replace(/\s+/g,'_')}_${timestamp.split('T')[0]}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ============================================================
+   GOOGLE APPS SCRIPT CODE (copy to script.google.com)
+   Place this in a new Google Apps Script project and deploy as Web App.
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const rows = data.rows;
+    if (!rows || !rows.length) return ContentService.createTextOutput(JSON.stringify({status:'error',message:'No rows'})).setMimeType(ContentService.MimeType.JSON);
+    
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const HEADERS = ['Timestamp','Teacher','Class','Student Name','Selection ID','Question ID','Question Type','Student Response','Correct/Incorrect','Score','Feedback Given','Final Total Score','Percent'];
+    const classTab = rows[0].class || 'Unknown Class';
+    
+    // Tab: class-specific
+    let sheet = ss.getSheetByName(classTab);
+    if (!sheet) {
+      sheet = ss.insertSheet(classTab);
+      sheet.appendRow(HEADERS);
+    }
+    
+    // Tab: All Submissions
+    let allSheet = ss.getSheetByName('All Submissions');
+    if (!allSheet) {
+      allSheet = ss.insertSheet('All Submissions');
+      allSheet.appendRow(HEADERS);
+    }
+    
+    rows.forEach(r => {
+      const row = [r.timestamp,r.teacher,r.class,r.studentName,r.selectionId,r.questionId,r.questionType,r.studentResponse,r.correctIncorrect,r.score,r.feedbackGiven,r.finalTotalScore,r.percent];
+      sheet.appendRow(row);
+      allSheet.appendRow(row);
+    });
+    
+    return ContentService.createTextOutput(JSON.stringify({status:'success'})).setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(JSON.stringify({status:'error',message:err.toString()})).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+   ============================================================ */
+
+/* ============================================================
+   INIT
+   ============================================================ */
+window.addEventListener('DOMContentLoaded', () => {
+  // Lock accommodation tools by default until a student is selected
+  const accomWrap = document.getElementById('accom-tools-wrap');
+  const lockMsg   = document.getElementById('support-lock-msg');
+  accomWrap.classList.add('support-tools-locked');
+  lockMsg.style.display = 'block';
+
+  // Init speech recognition reference
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    document.getElementById('stt-toggle-btn').title = 'Speech recognition not supported in this browser.';
+  }
+  if (!window.speechSynthesis) {
+    document.getElementById('tts-toggle-btn').title = 'Text-to-speech not supported in this browser.';
+  }
+});
+</script>
+</body>
+</html>
