@@ -900,23 +900,45 @@ select, input[type=text] {
 }
 .bilingual-note.show { display: block; }
 
-/* Dictionary entry question format */
+/* Dictionary entry question format — STAAR two-column layout */
 .dict-entry-box {
-  background: #fffbeb;
-  border: 2px solid #fde68a;
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 2px solid var(--gray-300);
+  border-radius: 4px;
+  margin-bottom: 14px;
   font-family: var(--font-main);
   font-size: 0.88rem;
   line-height: 1.7;
+  overflow: hidden;
+  background: #fff;
 }
-.dict-entry-word { font-size: 1.05rem; font-weight: 800; }
-.dict-entry-pron { font-size: 0.80rem; color: var(--gray-600); font-style: italic; }
-.dict-entry-pos  { font-style: italic; color: var(--gray-600); font-size: 0.83rem; }
-.dict-entry-guide { font-size: 0.75rem; color: #b45309; margin-bottom: 6px; font-family: var(--font-ui); }
-.dict-entry-meanings { padding-left: 14px; }
-.dict-entry-meanings li { margin-bottom: 4px; }
+.dict-entry-left {
+  padding: 12px 14px;
+  border-right: 2px solid var(--gray-300);
+  background: #fff;
+}
+.dict-entry-right {
+  padding: 12px 14px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dict-entry-right .q-direction {
+  font-size: 0.85rem;
+  font-family: var(--font-ui);
+  color: var(--gray-800);
+  font-weight: 600;
+  line-height: 1.5;
+}
+.dict-entry-word { font-size: 1.0rem; font-weight: 800; }
+.dict-entry-pron { font-size: 0.78rem; color: var(--gray-600); font-style: italic; }
+.dict-entry-pos  { font-style: italic; color: var(--gray-600); font-size: 0.82rem; }
+.dict-entry-guide { font-size: 0.72rem; color: #b45309; margin-bottom: 5px; font-family: var(--font-ui); }
+.dict-entry-meanings { padding-left: 16px; margin-top: 4px; }
+.dict-entry-meanings li { margin-bottom: 3px; font-size: 0.85rem; }
 
 /* Read more / chunk toggle */
 .passage-chunk { display: block; }
@@ -1852,18 +1874,23 @@ const SELECTIONS = [
         type: "dict-mc",
         typeLabel: "Dictionary Entry",
         typeClass: "qt-dict",
-        text: "Use the dictionary entry below to answer the question.\n\nWhich meaning of the word preserve best matches how it is used in sentence 10?",
+        text: "Read this dictionary entry.\n\nWhich meaning of preserve is used in sentence 10?\n\nSentence 10: 'Protecting the habitats along migration routes is essential to preserve this extraordinary natural event.'",
         dictEntry: `
-          <div class="dict-entry-guide">Guide words: <strong>press · pretty</strong></div>
-          <div class="dict-entry-word">pre·serve</div>
-          <div class="dict-entry-pron">(pri-ZURV)</div>
-          <div class="dict-entry-pos">verb</div>
-          <ol class="dict-entry-meanings">
-            <li><strong>1.</strong> To keep food from spoiling by sealing, pickling, or freezing. <em>Example: My grandmother likes to preserve peaches in the summer.</em></li>
-            <li><strong>2.</strong> To protect something from harm, damage, or destruction. <em>Example: The city voted to preserve the old library building.</em></li>
-            <li><strong>3.</strong> To maintain something in its original or existing state. <em>Example: Scientists work hard to preserve rare species of plants.</em></li>
-            <li><strong>4.</strong> To continue or keep up a tradition or way of life. <em>Example: Many cultures work to preserve their language and customs.</em></li>
-          </ol>
+          <div class="dict-entry-left">
+            <div class="dict-entry-guide">Guide words: <strong>press · pretty</strong></div>
+            <div class="dict-entry-word">pre·serve</div>
+            <div class="dict-entry-pron">/pri-ZURV/</div>
+            <div class="dict-entry-pos">(verb)</div>
+            <ol class="dict-entry-meanings">
+              <li>To keep food from spoiling by sealing, pickling, or freezing.</li>
+              <li>To protect something from harm, damage, or destruction.</li>
+              <li>To maintain something in its original or existing state.</li>
+              <li>To continue or keep up a tradition or way of life.</li>
+            </ol>
+          </div>
+          <div class="dict-entry-right">
+            <div class="q-direction">Which meaning of <u><strong>preserve</strong></u> is used in sentence 10?</div>
+          </div>
         `,
         choices: [
           { letter: "A", text: "Definition 2 — to protect something from harm or destruction" },
@@ -1872,7 +1899,7 @@ const SELECTIONS = [
           { letter: "D", text: "Definition 3 — to maintain something in its original state" }
         ],
         correct: "A",
-        sentenceRef: "Sentence 10: 'Protecting the habitats along migration routes is essential to preserve this extraordinary natural event.'",
+        sentenceRef: "",
         feedback: {
           correct: "Choice A is correct! In sentence 10, 'preserve' means to protect something from harm or destruction. The author is saying that migration routes (habitats) must be protected so this natural event is not destroyed or lost.",
           incorrect: "In sentence 10, the author says it is important to 'preserve this extraordinary natural event.' The context is about protecting migration routes. Which definition fits — keeping food? Or protecting something valuable from being lost?",
@@ -2157,18 +2184,23 @@ const SELECTIONS = [
         type: "dict-mc",
         typeLabel: "Dictionary Entry",
         typeClass: "qt-dict",
-        text: "Use the dictionary entry below to answer the question.\n\nRead sentence 1: 'A raised garden bed is one of the most efficient ways to grow vegetables, herbs, and flowers in a small space.'\n\nWhich meaning of the word efficient best matches how it is used in this sentence?",
+        text: "Read this dictionary entry.\n\nWhich meaning of efficient is used in sentence 1?\n\nSentence 1: 'A raised garden bed is one of the most efficient ways to grow vegetables, herbs, and flowers in a small space.'",
         dictEntry: `
-          <div class="dict-entry-guide">Guide words: <strong>effect · effort</strong></div>
-          <div class="dict-entry-word">ef·fi·cient</div>
-          <div class="dict-entry-pron">(ih-FISH-uhnt)</div>
-          <div class="dict-entry-pos">adjective</div>
-          <ol class="dict-entry-meanings">
-            <li><strong>1.</strong> Completing a task with the least amount of wasted time or energy. <em>Example: The efficient worker finished the job in half the expected time.</em></li>
-            <li><strong>2.</strong> Producing the most results for the amount of effort or resources used. <em>Example: A fuel-efficient car uses less gas to travel the same distance.</em></li>
-            <li><strong>3.</strong> Well-organized and structured for maximum performance. <em>Example: The factory had an efficient system for packaging products.</em></li>
-            <li><strong>4.</strong> Moving quickly without delays or problems. <em>Example: The efficient delivery service arrived ahead of schedule.</em></li>
-          </ol>
+          <div class="dict-entry-left">
+            <div class="dict-entry-guide">Guide words: <strong>effect · effort</strong></div>
+            <div class="dict-entry-word">ef·fi·cient</div>
+            <div class="dict-entry-pron">/ih-FISH-uhnt/</div>
+            <div class="dict-entry-pos">(adjective)</div>
+            <ol class="dict-entry-meanings">
+              <li>Completing a task with the least amount of wasted time or energy.</li>
+              <li>Producing the most results for the amount of effort or resources used.</li>
+              <li>Well-organized and structured for maximum performance.</li>
+              <li>Moving quickly without delays or problems.</li>
+            </ol>
+          </div>
+          <div class="dict-entry-right">
+            <div class="q-direction">Which meaning of <u><strong>efficient</strong></u> is used in sentence 1?</div>
+          </div>
         `,
         choices: [
           { letter: "A", text: "Definition 1 — completing a task with the least wasted time" },
@@ -2177,7 +2209,7 @@ const SELECTIONS = [
           { letter: "D", text: "Definition 2 — producing the most results for the effort or space used" }
         ],
         correct: "D",
-        sentenceRef: "Sentence 1: 'A raised garden bed is one of the most efficient ways to grow vegetables, herbs, and flowers in a small space.'",
+        sentenceRef: "",
         feedback: {
           correct: "Choice D is the best match. The sentence is saying that a raised garden bed produces a lot of food (results) in a small amount of space (resource). This matches definition 2 — producing the most results for the space used.",
           incorrect: "The sentence focuses on a raised garden bed being a great way to grow food in a SMALL SPACE. The key is the relationship between space (resource) and results (plants grown). Which definition focuses on getting maximum results from limited resources?",
@@ -2367,8 +2399,8 @@ function renderCurrentQuestion() {
   if (q.dictEntry) {
     dictEntryBox.innerHTML = q.dictEntry;
     dictEntryBox.classList.remove('hidden');
-    if (q.sentenceRef) {
-      dictEntryBox.innerHTML += `<div style="font-size:0.80rem;color:#7c3aed;margin-top:8px;padding-top:6px;border-top:1px solid #fde68a;font-family:var(--font-ui);"><strong>Target sentence:</strong> ${q.sentenceRef}</div>`;
+    if (q.sentenceRef && q.sentenceRef.trim()) {
+      dictEntryBox.innerHTML += `<div style="font-size:0.80rem;color:#7c3aed;margin-top:8px;padding-top:6px;border-top:1px solid var(--gray-200);font-family:var(--font-ui);grid-column:1/-1;padding:8px 14px;"><strong>Target sentence:</strong> ${q.sentenceRef}</div>`;
     }
   } else {
     dictEntryBox.classList.add('hidden');
@@ -2900,7 +2932,7 @@ function showResults() {
 /* ============================================================
    SECTION: GOOGLE SHEETS SUBMISSION LOGIC
    ============================================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzfn6blKNyowmsfVWaZrwsQXNWFDSnyXaFokVCSZVZnQ1mpdHigKSKs2OYbXtSfNIM/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx0h7ENhOkJwnYz5vfnZZ_pR0qTEQDQWK8voRbUdUBd8gCAohDcXT-7eHPjQx0Krmo/exec";
 
 async function submitToTeacher() {
   const msgEl = document.getElementById('submission-msg');
