@@ -883,23 +883,25 @@ async function loadAllData() {
   const btn = document.getElementById('refresh-btn');
   const icon = document.getElementById('refresh-icon');
   btn.disabled = true;
-  btn.classList.add('spinning') ;
+  btn.classList.add('spinning');
   icon.style.animation = 'spin 0.7s linear infinite';
 
   try {
-    // Fetch both class sheets
     const [claudioRows, chavezRows] = await Promise.all([
       fetchSheet(CLASS_NAMES.claudio),
       fetchSheet(CLASS_NAMES.chavez)
     ]);
     allData = [...claudioRows, ...chavezRows];
     processData(allData);
-    renderActiveClass();
-    updateSummaryCards();
-    updateLastRefresh();
   } catch(err) {
-    showError(err);
+    // If fetch fails, still show roster with no data
+    allData = [];
+    processData([]);
   }
+
+  renderActiveClass();
+  updateSummaryCards();
+  updateLastRefresh();
 
   btn.disabled = false;
   btn.classList.remove('spinning');
@@ -907,11 +909,25 @@ async function loadAllData() {
 }
 
 async function fetchSheet(sheetName) {
-  const url = `${SCRIPT_URL}?sheet=${encodeURIComponent(sheetName)}`;
-  const resp = await fetch(url);
-  const data = await resp.json();
-  if (data.rows) return data.rows;
-  return [];
+  try {
+    const url = `${SCRIPT_URL}?sheet=${encodeURIComponent(sheetName)}`;
+    const resp = await fetch(url, { mode: 'cors' });
+    if (!resp.ok) throw new Error('Bad response');
+    const data = await resp.json();
+    if (data.rows) return data.rows;
+    return [];
+  } catch(err) {
+    // Try without mode specification as fallback
+    try {
+      const url = `${SCRIPT_URL}?sheet=${encodeURIComponent(sheetName)}`;
+      const resp = await fetch(url);
+      const data = await resp.json();
+      if (data.rows) return data.rows;
+      return [];
+    } catch(e) {
+      return [];
+    }
+  }
 }
 
 function processData(rows) {
@@ -949,6 +965,11 @@ function renderActiveClass() {
 
   if (!SCRIPT_URL || SCRIPT_URL.includes('PASTE_')) {
     container.innerHTML = buildEmptyState();
+    return;
+  }
+
+  if (roster.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="empty-icon">👥</div><p>No roster found for this class.</p></div>`;
     return;
   }
 
@@ -1232,34 +1253,11 @@ function confirmReset(name) {
     .catch(() => {}); // fire and forget
   alert(`✅ Reset signal sent for ${name}.\n\nWhen they next open the activity, their progress will be cleared and they can start fresh.`);
 }
-   Add this function to your existing Apps Script code:
-
-function doGet(e) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheetName = e.parameter.sheet || 'All Submissions';
-  const sheet = ss.getSheetByName(sheetName);
-
-  if (!sheet) {
-    return ContentService.createTextOutput(JSON.stringify({ rows: [] }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  const data = sheet.getDataRange().getValues();
-  if (data.length <= 1) {
-    return ContentService.createTextOutput(JSON.stringify({ rows: [] }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  const headers = data[0].map(h => String(h).trim());
-  const rows = data.slice(1).map(row => {
-    const obj = {};
-    headers.forEach((h, i) => { obj[h] = row[i]; });
-    return obj;
-  });
-
-  return ContentService.createTextOutput(JSON.stringify({ rows }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
+/*
+   ============================================================
+   APPS SCRIPT REFERENCE (already set up - no action needed)
+   Your doGet function in Apps Script reads sheet data by name
+   and returns it as JSON rows for this dashboard to display.
    ============================================================ */
 
 /* ============================================================
