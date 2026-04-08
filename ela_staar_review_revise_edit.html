@@ -863,19 +863,7 @@ select, input[type=text] {
 }
 .submit-teacher-btn:hover { background: #5b21b6; }
 
-.download-btn {
-  padding: 12px 24px;
-  background: var(--green);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: var(--font-ui);
-  transition: background 0.2s;
-}
-.download-btn:hover { background: #15803d; }
+/* download button removed */
 
 .submission-msg {
   margin-top: 10px;
@@ -1692,19 +1680,19 @@ const SELECTIONS = [
         typeClass: "qt-edit",
         text: "Read the sentence below from the passage:\n\n\"She felt overwhelmed, but she also felt something else — a quiet determination to fix it.\"\n\nA student rewrote this sentence and made a capitalization error. Which version contains the error?",
         choices: [
-          { letter: "A", text: "She felt overwhelmed, but she also felt something else — a quiet Determination to fix it." },
-          { letter: "B", text: "she felt overwhelmed, but she also felt something else — a quiet determination to fix it." },
-          { letter: "C", text: "She felt overwhelmed, but she also felt something else — a quiet determination to fix it." },
-          { letter: "D", text: "She felt overwhelmed. But she also felt something else — a quiet determination to fix it." }
+          { letter: "A", text: "she felt overwhelmed, but she also felt something else — a quiet determination to fix it." },
+          { letter: "B", text: "She felt overwhelmed. But she also felt something else — a quiet determination to fix it." },
+          { letter: "C", text: "She felt overwhelmed, but she also felt something else — a quiet Determination to fix it." },
+          { letter: "D", text: "She felt overwhelmed, but she also felt something else — a quiet determination to fix it." }
         ],
-        correct: "A",
+        correct: "C",
         feedback: {
-          correct: "Choice A incorrectly capitalizes 'Determination' — this is a common noun, not a proper noun, so it should be lowercase in the middle of a sentence.",
-          incorrect: "Choice A is the version with the error. 'Determination' is a common noun and should NOT be capitalized in the middle of a sentence. Only proper nouns (names of specific people, places, or things) get capitalized mid-sentence.",
+          correct: "Choice C incorrectly capitalizes 'Determination' — this is a common noun, not a proper noun, so it should be lowercase in the middle of a sentence.",
+          incorrect: "Choice C is the version with the error. 'Determination' is a common noun and should NOT be capitalized in the middle of a sentence. Only proper nouns (names of specific people, places, or things) get capitalized mid-sentence.",
           distractors: {
-            "B": "Choice B starts the sentence with a lowercase letter — that is also an error, but that is NOT what the question asked you to find. Read carefully!",
-            "C": "Choice C is the CORRECT version — no errors. But the question asked you to FIND the error.",
-            "D": "Choice D splits the sentence into two, which changes the structure slightly but does not introduce a capitalization error."
+            "A": "Choice A starts the sentence with a lowercase letter — that is also an error, but that is NOT what the question asked you to find. Read carefully!",
+            "B": "Choice B splits the sentence into two, which changes the structure slightly but does not introduce a capitalization error.",
+            "D": "Choice D is the CORRECT version — no errors. But the question asked you to FIND the error."
           },
           reteach: "📌 EDITING TIP: Only capitalize: (1) the first word of a sentence, (2) proper nouns — names of specific people, places, organizations, or titles. Words like 'determination,' 'garden,' 'summer,' and 'hoe' are common nouns and should be lowercase in the middle of a sentence."
         },
@@ -1725,18 +1713,18 @@ const SELECTIONS = [
         text: "Read sentence 5 from the passage:\n\n\"She felt overwhelmed, but she also felt something else — a quiet determination to fix it.\"\n\nUsing context clues from the surrounding sentences, what is the most likely meaning of the word determination as it is used in this sentence?",
         choices: [
           { letter: "A", text: "A feeling of sadness and loss" },
-          { letter: "B", text: "A strong decision or commitment to accomplish something" },
-          { letter: "C", text: "Confusion about what to do next" },
-          { letter: "D", text: "A need to ask someone else for help" }
+          { letter: "B", text: "Confusion about what to do next" },
+          { letter: "C", text: "A need to ask someone else for help" },
+          { letter: "D", text: "A strong decision or commitment to accomplish something" }
         ],
-        correct: "B",
+        correct: "D",
         feedback: {
-          correct: "Choice B is correct. 'Determination' means a firm decision to accomplish something. The context clue comes from the sentence that follows — Marisol picks up a hoe and begins pulling weeds immediately. Her action shows she made a strong, committed decision to fix the garden.",
+          correct: "Choice D is correct. 'Determination' means a firm decision to accomplish something. The context clue comes from the sentence that follows — Marisol picks up a hoe and begins pulling weeds immediately. Her action shows she made a strong, committed decision to fix the garden.",
           incorrect: "The clue is in what Marisol does NEXT. She picks up a hoe and starts working right away. That action shows she made a firm, committed decision — that is 'determination.'",
           distractors: {
             "A": "Sadness is partially supported — she sees the mess — but the word 'determination' signals a positive, active feeling, not just sadness.",
-            "C": "Marisol does not show confusion. She immediately takes action, which is the opposite of being confused.",
-            "D": "Marisol works alone without asking for help, so 'needing help' does not match the context."
+            "B": "Marisol does not show confusion. She immediately takes action, which is the opposite of being confused.",
+            "C": "Marisol works alone without asking for help, so 'needing help' does not match the context."
           },
           reteach: "📌 CONTEXT CLUE TIP: When you see an unfamiliar word, don't stop! Keep reading. Look at what the character DOES right after — their actions often give you the best clue about what the word means. Highlight the action clue in green!"
         },
@@ -1878,20 +1866,20 @@ const SELECTIONS = [
           </ol>
         `,
         choices: [
-          { letter: "A", text: "Definition 1 — to keep food from spoiling" },
-          { letter: "B", text: "Definition 2 — to protect something from harm or destruction" },
-          { letter: "C", text: "Definition 3 — to maintain something in its original state" },
-          { letter: "D", text: "Definition 4 — to continue a tradition or way of life" }
+          { letter: "A", text: "Definition 2 — to protect something from harm or destruction" },
+          { letter: "B", text: "Definition 1 — to keep food from spoiling" },
+          { letter: "C", text: "Definition 4 — to continue a tradition or way of life" },
+          { letter: "D", text: "Definition 3 — to maintain something in its original state" }
         ],
-        correct: "B",
+        correct: "A",
         sentenceRef: "Sentence 10: 'Protecting the habitats along migration routes is essential to preserve this extraordinary natural event.'",
         feedback: {
-          correct: "Choice B is correct! In sentence 10, 'preserve' means to protect something from harm or destruction. The author is saying that migration routes (habitats) must be protected so this natural event is not destroyed or lost.",
+          correct: "Choice A is correct! In sentence 10, 'preserve' means to protect something from harm or destruction. The author is saying that migration routes (habitats) must be protected so this natural event is not destroyed or lost.",
           incorrect: "In sentence 10, the author says it is important to 'preserve this extraordinary natural event.' The context is about protecting migration routes. Which definition fits — keeping food? Or protecting something valuable from being lost?",
           distractors: {
-            "A": "Definition 1 is about food preservation, which has nothing to do with butterfly migration routes.",
-            "C": "Definition 3 is close but 'original state' refers more to keeping something exactly as it was. Here, the focus is on protection from harm.",
-            "D": "Definition 4 is about cultural traditions. Butterfly migration is a natural event, not a cultural practice."
+            "B": "Definition 1 is about food preservation, which has nothing to do with butterfly migration routes.",
+            "C": "Definition 4 is about cultural traditions. Butterfly migration is a natural event, not a cultural practice.",
+            "D": "Definition 3 is close but 'original state' refers more to keeping something exactly as it was. Here, the focus is on protection from harm."
           },
           reteach: "📌 DICTIONARY ENTRY TIP: Many words have MULTIPLE meanings! Always read the sentence first, then read ALL the definitions. Ask: which definition makes the most sense IN THIS SENTENCE and in THIS CONTEXT? Cross out definitions that clearly don't fit!"
         },
@@ -1962,17 +1950,17 @@ const SELECTIONS = [
         text: "Which revision of sentence 6 would BEST improve the clarity and flow of the writing?",
         choices: [
           { letter: "A", text: "On one hand, the science fair was important to me, and on the other hand, Sofia was also important too as well." },
-          { letter: "B", text: "Both the science fair and my cousin Sofia's quinceañera were important to me, which made the decision especially difficult." },
-          { letter: "C", text: "The science fair was important. Sofia was important. They were both important things." },
+          { letter: "B", text: "The science fair was important. Sofia was important. They were both important things." },
+          { letter: "C", text: "Both the science fair and my cousin Sofia's quinceañera were important to me, which made the decision especially difficult." },
           { letter: "D", text: "On one hand, the science fair. On the other hand, Sofia." }
         ],
-        correct: "B",
+        correct: "C",
         feedback: {
-          correct: "Choice B is the best revision because it combines both ideas into one clear, mature sentence and explains WHY the situation was difficult (it makes the decision hard). This revision flows well and avoids redundancy.",
-          incorrect: "Choice B combines both ideas clearly and adds important context — that having two important things to choose between made the DECISION hard. This improves the writing without losing meaning.",
+          correct: "Choice C is the best revision because it combines both ideas into one clear, mature sentence and explains WHY the situation was difficult (it makes the decision hard). This revision flows well and avoids redundancy.",
+          incorrect: "Choice C combines both ideas clearly and adds important context — that having two important things to choose between made the DECISION hard. This improves the writing without losing meaning.",
           distractors: {
             "A": "Choice A adds the phrase 'also important too as well' — this is redundant. 'Also,' 'too,' and 'as well' all mean the same thing, which creates wordiness, not clarity.",
-            "C": "Choice C breaks the original sentence into even shorter, choppier sentences, making the writing less mature and repeating 'important' three times.",
+            "B": "Choice B breaks the original sentence into even shorter, choppier sentences, making the writing less mature and repeating 'important' three times.",
             "D": "Choice D creates two fragments — incomplete sentences with no verbs. Fragments are not complete thoughts and lower the quality of writing."
           },
           reteach: "📌 REVISING TIP: Good revision removes redundancy (repeating the same idea with different words), combines choppy sentences, and adds meaningful detail. Ask yourself: does my revision IMPROVE the sentence without changing the meaning? Avoid adding extra words that say the same thing twice."
@@ -1995,8 +1983,8 @@ const SELECTIONS = [
         choices: [
           { letter: "A", text: "\"Only you can decide what matters most,\" she said, \"but remember — some moments only happen once.\"" },
           { letter: "B", text: "\"Only you can decide what matters most\" she said \"but remember — some moments only happen once.\"" },
-          { letter: "C", text: "\"Only you can decide what matters most,\" she said. \"But remember — some moments only happen once.\"" },
-          { letter: "D", text: "Only you can decide what matters most, she said, but remember — some moments only happen once." }
+          { letter: "C", text: "Only you can decide what matters most, she said, but remember — some moments only happen once." },
+          { letter: "D", text: "\"Only you can decide what matters most,\" she said. \"But remember — some moments only happen once.\"" }
         ],
         correct: "A",
         feedback: {
@@ -2004,8 +1992,8 @@ const SELECTIONS = [
           incorrect: "This is a split dialogue sentence. The pattern is: 'First part of quote,' speaker said, 'second part of quote.' Notice the comma inside the first set of quotation marks, the attribution ('she said'), another comma, and the second part of the quote.",
           distractors: {
             "B": "Quotation marks are present but the commas that separate the parts of the split quote are missing, making it hard to read.",
-            "C": "Splitting the quote into two sentences with a period changes the meaning and the connection between the two parts of what was said.",
-            "D": "No quotation marks are used at all, so the reader cannot tell which words were spoken aloud."
+            "C": "No quotation marks are used at all, so the reader cannot tell which words were spoken aloud.",
+            "D": "Splitting the quote into two sentences with a period changes the meaning and the connection between the two parts of what was said."
           },
           reteach: "📌 DIALOGUE PUNCTUATION: When a spoken quote is split by a dialogue tag, use this pattern:\n\"First part,\" speaker said, \"second part.\"\n→ Comma INSIDE the first quote\n→ Lowercase dialogue tag\n→ Comma after tag\n→ Second part of quote in new quotation marks"
         },
@@ -2107,19 +2095,19 @@ const SELECTIONS = [
         typeClass: "qt-edit",
         text: "Read the sentence below, which a student wrote in a report about raised garden beds:\n\n\"You should use untreated wood, also compost also helps also.\"\n\nWhich revision best corrects the editing errors in this sentence?",
         choices: [
-          { letter: "A", text: "You should use untreated wood, and adding compost to the soil also helps." },
-          { letter: "B", text: "You should use untreated wood, also you should also compost also as well." },
-          { letter: "C", text: "Untreated wood. Also compost. Helps." },
-          { letter: "D", text: "Using untreated wood also and compost helps the garden also grow." }
+          { letter: "A", text: "You should use untreated wood, also you should also compost also as well." },
+          { letter: "B", text: "Untreated wood. Also compost. Helps." },
+          { letter: "C", text: "Using untreated wood also and compost helps the garden also grow." },
+          { letter: "D", text: "You should use untreated wood, and adding compost to the soil also helps." }
         ],
-        correct: "A",
+        correct: "D",
         feedback: {
-          correct: "Choice A is correct! It removes the repetitive 'also' and creates one clear, grammatically correct sentence. The conjunction 'and' properly connects the two related ideas, and the sentence flows naturally.",
-          incorrect: "The original sentence repeats 'also' three times, which is redundant. Choice A removes the wordiness and uses 'and' to connect the two ideas clearly.",
+          correct: "Choice D is correct! It removes the repetitive 'also' and creates one clear, grammatically correct sentence. The conjunction 'and' properly connects the two related ideas, and the sentence flows naturally.",
+          incorrect: "The original sentence repeats 'also' three times, which is redundant. Choice D removes the wordiness and uses 'and' to connect the two ideas clearly.",
           distractors: {
-            "B": "Choice B keeps all the redundant 'also' words and adds 'as well' — this makes it even MORE wordy and confusing.",
-            "C": "Choice C creates three fragments — incomplete sentences with no subjects or verbs.",
-            "D": "Choice D still contains awkward placement of 'also' and reads unclearly."
+            "A": "Choice A keeps all the redundant 'also' words and adds 'as well' — this makes it even MORE wordy and confusing.",
+            "B": "Choice B creates three fragments — incomplete sentences with no subjects or verbs.",
+            "C": "Choice C still contains awkward placement of 'also' and reads unclearly."
           },
           reteach: "📌 EDITING TIP — Eliminate Redundancy: When you use 'also,' 'too,' and 'as well' in the same sentence, you repeat the same meaning. Choose ONE connecting word and use it correctly. 'And' is often cleaner and more direct than stacking multiple 'also's."
         },
@@ -2184,19 +2172,19 @@ const SELECTIONS = [
         `,
         choices: [
           { letter: "A", text: "Definition 1 — completing a task with the least wasted time" },
-          { letter: "B", text: "Definition 2 — producing the most results for the effort or space used" },
-          { letter: "C", text: "Definition 3 — well-organized for maximum performance" },
-          { letter: "D", text: "Definition 4 — moving quickly without delays" }
+          { letter: "B", text: "Definition 3 — well-organized for maximum performance" },
+          { letter: "C", text: "Definition 4 — moving quickly without delays" },
+          { letter: "D", text: "Definition 2 — producing the most results for the effort or space used" }
         ],
-        correct: "B",
+        correct: "D",
         sentenceRef: "Sentence 1: 'A raised garden bed is one of the most efficient ways to grow vegetables, herbs, and flowers in a small space.'",
         feedback: {
-          correct: "Choice B is the best match. The sentence is saying that a raised garden bed produces a lot of food (results) in a small amount of space (resource). This matches definition 2 — producing the most results for the space used.",
+          correct: "Choice D is the best match. The sentence is saying that a raised garden bed produces a lot of food (results) in a small amount of space (resource). This matches definition 2 — producing the most results for the space used.",
           incorrect: "The sentence focuses on a raised garden bed being a great way to grow food in a SMALL SPACE. The key is the relationship between space (resource) and results (plants grown). Which definition focuses on getting maximum results from limited resources?",
           distractors: {
             "A": "Definition 1 is about time and energy, not about space or growing capacity.",
-            "C": "Definition 3 is about organization, not about the relationship between space and results.",
-            "D": "Definition 4 is about speed, which is not discussed in this context."
+            "B": "Definition 3 is about organization, not about the relationship between space and results.",
+            "C": "Definition 4 is about speed, which is not discussed in this context."
           },
           reteach: "📌 MULTIPLE MEANINGS IN CONTEXT: When a word has multiple definitions, find the one that matches the CONTEXT. Ask: What is the sentence actually ABOUT? In sentence 1, the key idea is that this garden method produces a lot in a small space. Which definition fits that idea?"
         },
@@ -2904,7 +2892,6 @@ function showResults() {
     <div class="results-section">
       <h3>📤 Submit to Teacher</h3>
       <button class="submit-teacher-btn" onclick="submitToTeacher()">📤 Submit to Google Sheets</button>
-      <button class="download-btn" onclick="downloadResults()">⬇ Download as CSV</button>
       <div class="submission-msg" id="submission-msg"></div>
     </div>
   `;
@@ -2913,7 +2900,7 @@ function showResults() {
 /* ============================================================
    SECTION: GOOGLE SHEETS SUBMISSION LOGIC
    ============================================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJWRnpB-pgJIYm_J60BNZkRMgTM_riarCDrSdRkDjXcDtXUGV8vcvYgDgK3x0Dj0o/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzfn6blKNyowmsfVWaZrwsQXNWFDSnyXaFokVCSZVZnQ1mpdHigKSKs2OYbXtSfNIM/exec";
 
 async function submitToTeacher() {
   const msgEl = document.getElementById('submission-msg');
@@ -2943,7 +2930,7 @@ async function submitToTeacher() {
 
   if (!SCRIPT_URL || SCRIPT_URL === "PASTE_GOOGLE_APPS_SCRIPT_URL_HERE") {
     msgEl.className = 'submission-msg show submission-error';
-    msgEl.textContent = '⚠ No Google Apps Script URL is set. Use the Download CSV button instead.';
+    msgEl.textContent = '⚠ No Google Apps Script URL is set. Please let your teacher know.';
     return;
   }
 
@@ -2959,7 +2946,7 @@ async function submitToTeacher() {
     msgEl.textContent = '✅ Submitted! Check your Google Sheet in about 10 seconds to confirm the data arrived.';
   } catch(e) {
     msgEl.className = 'submission-msg show submission-error';
-    msgEl.textContent = '❌ Submission failed. Please use the Download CSV button instead and give the file to your teacher.';
+    msgEl.textContent = '❌ Submission failed. Please let your teacher know so they can help.';
   }
 }
 
