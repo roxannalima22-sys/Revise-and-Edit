@@ -2948,17 +2948,15 @@ async function submitToTeacher() {
   }
 
   try {
-    const resp = await fetch(SCRIPT_URL, {
+    await fetch(SCRIPT_URL, {
       method: 'POST',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ rows })
     });
-    if (resp.ok) {
-      msgEl.className = 'submission-msg show submission-success';
-      msgEl.textContent = '✅ Successfully submitted to Google Sheets! Mrs. Claudio can now see your results.';
-    } else {
-      throw new Error('Server error');
-    }
+    // no-cors means we can't read the response, but if no exception was thrown the request went through
+    msgEl.className = 'submission-msg show submission-success';
+    msgEl.textContent = '✅ Submitted! Check your Google Sheet in about 10 seconds to confirm the data arrived.';
   } catch(e) {
     msgEl.className = 'submission-msg show submission-error';
     msgEl.textContent = '❌ Submission failed. Please use the Download CSV button instead and give the file to your teacher.';
