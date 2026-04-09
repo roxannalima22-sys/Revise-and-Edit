@@ -2276,7 +2276,35 @@ function saveProgress() {
   };
   try {
     localStorage.setItem(getSaveKey(state.selectedStudent), JSON.stringify(saveData));
+    // Show brief save indicator
+    showSaveIndicator();
   } catch(e) {}
+}
+
+function showSaveIndicator() {
+  let indicator = document.getElementById('save-indicator');
+  if (!indicator) {
+    indicator = document.createElement('div');
+    indicator.id = 'save-indicator';
+    indicator.style.cssText = `
+      position: fixed; bottom: 16px; right: 16px;
+      background: #16a34a; color: #fff;
+      padding: 6px 14px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 700;
+      font-family: 'Trebuchet MS', sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 999; opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    `;
+    indicator.textContent = '✓ Progress saved';
+    document.body.appendChild(indicator);
+  }
+  indicator.style.opacity = '1';
+  clearTimeout(indicator._timer);
+  indicator._timer = setTimeout(() => {
+    indicator.style.opacity = '0';
+  }, 2000);
 }
 
 function loadSavedProgress(studentName) {
@@ -2348,12 +2376,14 @@ function showResumeBanner(studentName, qDone, savedAt, saved) {
 
 function resumeSession() {
   const saved = window._pendingSavedData;
-  if (!saved) return;
+  if (!saved) { startFresh(); return; }
 
   buildFlatQuestions();
   state.started = true;
-  state.currentFlat = saved.currentFlat;
-  state.responses = saved.responses;
+  state.currentFlat = saved.currentFlat || 0;
+  state.responses = saved.responses || [];
+  state.selectedStudent = saved.student || state.selectedStudent;
+  state.selectedClass = saved.class || state.selectedClass;
 
   document.getElementById('start-screen').classList.add('hidden');
   document.getElementById('question-area').classList.remove('hidden');
@@ -2364,11 +2394,15 @@ function resumeSession() {
   const banner = document.getElementById('resume-banner');
   if (banner) banner.remove();
   window._pendingSavedData = null;
+
+  showSaveIndicator();
 }
 
 function startFresh() {
   clearSavedProgress(state.selectedStudent);
   window._pendingSavedData = null;
+  state.responses = [];
+  state.currentFlat = 0;
   const banner = document.getElementById('resume-banner');
   if (banner) banner.remove();
 }
@@ -2431,6 +2465,12 @@ document.getElementById('student-select').addEventListener('change', function() 
    SECTION: START ACTIVITY
    ============================================================ */
 function startActivity() {
+  // Check if there's saved progress for this student
+  // If so, resumeSession handles it — don't start fresh
+  if (window._pendingSavedData) {
+    resumeSession();
+    return;
+  }
   buildFlatQuestions();
   state.started = true;
   state.currentFlat = 0;
@@ -3054,7 +3094,7 @@ function showResults() {
 /* ============================================================
    SECTION: REAL-TIME SINGLE QUESTION SUBMISSION
    ============================================================ */
-async function submitSingleResponse(qId, qType, answer, correctIncorrect, score, selId) {
+function submitSingleResponse(qId, qType, answer, correctIncorrect, score, selId) {
   if (!SCRIPT_URL || SCRIPT_URL === "PASTE_GOOGLE_APPS_SCRIPT_URL_HERE") return;
   if (!state.selectedStudent) return;
 
@@ -3080,45 +3120,38 @@ async function submitSingleResponse(qId, qType, answer, correctIncorrect, score,
     }]
   });
 
-  // Method 1: no-cors fetch (fastest)
-  try {
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: payload
-    });
-    return; // fire and forget
-  } catch(e1) {
-    // fall through to method 2
-  }
-
-  // Method 2: hidden iframe form (CORS bypass fallback)
-  try {
-    let iframe = document.getElementById('submit-iframe');
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.id = 'submit-iframe';
-      iframe.name = 'submit-iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = SCRIPT_URL;
-    form.target = 'submit-iframe';
-    form.style.display = 'none';
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'data';
-    input.value = payload;
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(() => { if (form.parentNode) form.parentNode.removeChild(form); }, 3000);
-  } catch(e2) {
-    // Silent fail — progress still saved locally via localStorage
-  }
+  // Primary: no-cors fetch (fire and forget)
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: payload
+  }).catch(() => {
+    // Fallback: hidden iframe form submission
+    try {
+      let iframe = document.getElementById('submit-iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'submit-iframe';
+        iframe.name = 'submit-iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+      }
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = SCRIPT_URL;
+      form.target = 'submit-iframe';
+      form.style.display = 'none';
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'data';
+      input.value = payload;
+      form.appendChild(input);
+      document.body.appendChild(form);
+      form.submit();
+      setTimeout(() => { if (form.parentNode) form.parentNode.removeChild(form); }, 3000);
+    } catch(e) { /* silent fail - data saved in localStorage */ }
+  });
 }
 
 /* ============================================================
