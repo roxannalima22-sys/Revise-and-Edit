@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5th Grade ELA STAAR Revising & Editing Review — Mrs. Claudio</title>
+<title>5th Grade ELA STAAR Revising & Editing Review — Mrs. Claudio v2.1</title>
 <style>
 /* ============================================================
    GLOBAL STYLES
@@ -3071,7 +3071,7 @@ async function submitSingleResponse(qId, qType, answer, correctIncorrect, score,
       selectionId: selId,
       questionId: qId,
       questionType: qType,
-      studentResponse: answer.toString(),
+      studentResponse: answer.toString().substring(0, 300),
       correctIncorrect: correctIncorrect,
       score: score,
       feedbackGiven: '',
@@ -3080,7 +3080,20 @@ async function submitSingleResponse(qId, qType, answer, correctIncorrect, score,
     }]
   });
 
-  // Use hidden iframe + form trick to bypass CORS
+  // Method 1: no-cors fetch (fastest)
+  try {
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: payload
+    });
+    return; // fire and forget
+  } catch(e1) {
+    // fall through to method 2
+  }
+
+  // Method 2: hidden iframe form (CORS bypass fallback)
   try {
     let iframe = document.getElementById('submit-iframe');
     if (!iframe) {
@@ -3090,24 +3103,21 @@ async function submitSingleResponse(qId, qType, answer, correctIncorrect, score,
       iframe.style.display = 'none';
       document.body.appendChild(iframe);
     }
-
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = SCRIPT_URL;
     form.target = 'submit-iframe';
     form.style.display = 'none';
-
     const input = document.createElement('input');
     input.type = 'hidden';
     input.name = 'data';
     input.value = payload;
     form.appendChild(input);
-
     document.body.appendChild(form);
     form.submit();
-    setTimeout(() => { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
-  } catch(e) {
-    // Silent fail — data still saved locally
+    setTimeout(() => { if (form.parentNode) form.parentNode.removeChild(form); }, 3000);
+  } catch(e2) {
+    // Silent fail — progress still saved locally via localStorage
   }
 }
 
